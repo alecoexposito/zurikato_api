@@ -14,7 +14,7 @@ module.exports = (sequelize, DataTypes)=>{
         remark: { type: DataTypes.STRING},
         activation_date: { type: DataTypes.DATE},
         expiration_date: { type: DataTypes.DATE},
-        devices_group_id: { type: DataTypes.STRING},
+        devices_group_id: { type: DataTypes.INTEGER},
     }, {freezeTableName: false});
     return device;
 };
