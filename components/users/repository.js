@@ -41,12 +41,15 @@ const repository = {
                 include: [{
                         model: db.deviceModel
                     }, {
+                        model: db.gpsData,order: [['createdAt','DESC']],limit:1
+                    }, {
                         model: db.devicesGroup
                     }
                 ]
             }]
             
         });
+            console.log(user.devices);
         return user.devices;
          }catch(error){console.log(error);}
        
