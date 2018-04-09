@@ -13,7 +13,7 @@ db.devices.belongsTo(db.deviceModel, { foreignKey: 'idDeviceModel' });
 db.deviceModel.hasMany(db.devices, { foreignKey: 'idDeviceModel' });
 
 db.devices.belongsTo(db.devicesGroup, { foreignKey: 'devices_group_id' });
-db.devicesGroup.hasMany(db.devices, { foreignKey: 'devices_group_id' });
+// db.devicesGroup.hasMany(db.devices, { foreignKey: 'devices_group_id' });
 
 db.devices.belongsToMany(user, {
     through: {
