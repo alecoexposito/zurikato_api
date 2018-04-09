@@ -11,7 +11,6 @@ var deviceFactory = {
         } catch (error) {
             devices=[];
         }
-        console.log(devices);
         return devices;
     },
     _getAll: async function() {
