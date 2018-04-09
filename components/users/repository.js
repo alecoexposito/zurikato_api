@@ -32,7 +32,6 @@ const repository = {
         return user;
     },
     getDevices: async function(id) {
-        console.log("aaaaaaaaaaaaaaaaaaa");
          try{
             var user = await db.users.findOne({
             where: { idUser: id },
@@ -50,7 +49,6 @@ const repository = {
             }]
             
         });
-            console.log(user.devices);
         return user.devices;
          }catch(error){console.log(error);}
        
