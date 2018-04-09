@@ -44,8 +44,6 @@ const repository = {
                         model: db.gpsData,order: [['createdAt','DESC']],limit:1
                     }
                 ]
-            }, {
-                model: db.devicesGroup
             }]
             
         });
