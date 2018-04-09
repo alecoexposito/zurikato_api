@@ -67,7 +67,7 @@ const repository = {
                 }]
 
             });
-            return user.devices;
+            return user.groups;
         }catch(error){console.log(error);}
     },
 
