@@ -37,6 +37,12 @@ var middleware = {
         res.json(devices);
     },
 
+    groups: async function(req, res) {
+        var id = req.params.id;
+        var groups = await factory._getGroups(id);
+        res.json(groups);
+    },
+
     create: async function(req, res) {
         var token = req.headers['authorization'];
         token = token.replace('Bearer ', '');

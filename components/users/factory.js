@@ -18,6 +18,17 @@ var factory = {
         return devices;
     },
 
+    _getGroups: async function(id) {
+        let groups = [];
+        try {
+            groups = await repository.getGroups(id);
+
+        } catch (error) {
+            groups = [];
+        }
+        return groups;
+    },
+
     _register: async function(User) {
         let reg = false;
         try {

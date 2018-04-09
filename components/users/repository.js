@@ -49,8 +49,28 @@ const repository = {
         });
         return user.devices;
          }catch(error){console.log(error);}
-       
     },
+
+    getGroups: async function(id) {
+        try{
+            var user = await db.users.findOne({
+                where: { idUser: id },
+                //
+                include: [{
+                    model: db.devicesGroup,
+                    // include: [{
+                    //     model: db.deviceModel
+                    // }, {
+                    //     model: db.gpsData,order: [['createdAt','DESC']],limit:1
+                    // }
+                    // ]
+                }]
+
+            });
+            return user.devices;
+        }catch(error){console.log(error);}
+    },
+
     getAll: async function() {
         var users = [];
         var result = await db.users.findAll({
