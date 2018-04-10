@@ -8,7 +8,7 @@ db.sequelize = sequelize;
 db.relations = {};
 db.users = require('./entities/user')(sequelize, Sequelize);
 db.userRole = require('./entities/UserRole')(sequelize, Sequelize);
-db.devicesGroup = require('./entities/DevicesGroup')(sequelize, Sequelize);
+db.devicesGroup = require('../devices/entities/DevicesGroup')(sequelize, Sequelize);
 /*db.userDevices = require('./entities/UserDevices.js')(sequelize, Sequelize);
 db.users.belongsTo(db.userRole, { foreignKey: 'userType' });
 db.userRole.hasMany(db.users, { foreignKey: 'userType' });
