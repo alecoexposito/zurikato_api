@@ -5,7 +5,9 @@ module.exports = (router) => {
     router.get('/users/:id', middleware.details);
     router.get('/users/:id/profile', middleware.profile);
     router.get('/users/:id/devices', middleware.devices);
-    router.get('/users/:id/groups', middleware.groups)
+    router.get('/users/:id/groups', function(req, res, next) {
+        res.send(JSON.stringify({"status": 200, "error": null, "response": "just testing"}));
+    });
     router.post('/users', middleware.create);
     router.put('/users/:id', middleware.update);
     router.delete('/users/:id', middleware.remove);
