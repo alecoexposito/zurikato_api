@@ -56,15 +56,15 @@ const repository = {
             var user = await db.users.findOne({
                 where: { idUser: id },
                 //
-                include: [{
-                    model: db.devicesGroup,
-                    // include: [{
-                    //     model: db.deviceModel
-                    // }, {
-                    //     model: db.gpsData,order: [['createdAt','DESC']],limit:1
-                    // }
-                    // ]
-                }]
+                // include: [{
+                //     model: db.devicesGroup,
+                //     // include: [{
+                //     //     model: db.deviceModel
+                //     // }, {
+                //     //     model: db.gpsData,order: [['createdAt','DESC']],limit:1
+                //     // }
+                //     // ]
+                // }]
 
             });
             return user.groups;
