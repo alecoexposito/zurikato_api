@@ -22,7 +22,7 @@ db.users.belongsToMany(deviceEntity, {
 });
 db.relations.device = deviceEntity;*/
 db.devicesGroup.belongsTo(db.users, { foreignKey: 'user_id' });
-db.users.hasMany(db.devicesGroup, { as: "groups", foreignKey: 'user_id' });
+db.users.hasMany(db.devicesGroup, { as: "devices_group", foreignKey: 'user_id' });
 
 
 module.exports = db;
