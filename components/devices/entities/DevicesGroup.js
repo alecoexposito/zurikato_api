@@ -4,7 +4,7 @@ module.exports = (sequelize, DataTypes)=>{
             primaryKey: true
         },
         label: { type: DataTypes.STRING},
-        client_id: { type: DataTypes.INTEGER}
+        user_id: { type: DataTypes.INTEGER}
     }, {freezeTableName: false});
     return devicesGroup;
 };
