@@ -58,7 +58,7 @@ const repository = {
 
                 include: [{
                     model: db.devicesGroup,
-                    as: groups
+                    as: "groups"
                     // include: [{
                     //     model: db.deviceModel
                     // }, {
