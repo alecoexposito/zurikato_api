@@ -21,7 +21,7 @@ db.users.belongsToMany(deviceEntity, {
     constraints: false
 });
 db.relations.device = deviceEntity;*/
-// db.devicesGroup.belongsTo(db.users, { foreignKey: 'user_id' });
+db.devicesGroup.belongsTo(db.users, { foreignKey: 'user_id' });
 db.users.hasMany(db.devicesGroup, { as: "groups", foreignKey: 'user_id' });
 
 
