@@ -52,24 +52,28 @@ const repository = {
     },
 
     getGroups: async function(id) {
-        try{
-            var user = await db.users.findOne({
-                where: { idUser: id },
-
-                include: [{
-                    model: db.devicesGroup,
-                    as: "groups"
-                    // include: [{
-                    //     model: db.deviceModel
-                    // }, {
-                    //     model: db.gpsData,order: [['createdAt','DESC']],limit:1
-                    // }
-                    // ]
-                }]
-
-            });
-            return user.groups;
-        }catch(error){console.log(error);}
+        // let query = "SELECT `peripheral_gps_data`.`lat`,`peripheral_gps_data`.`lng`,`peripheral_gps_data`.`createdAt` FROM `peripheral_gps_data` AS `peripheral_gps_data` INNER JOIN `devices` AS `device` ON `peripheral_gps_data`.`idDevice` = `device`.`idDevice` WHERE date_format(`peripheral_gps_data`.`createdAt`, '%Y-%m-%d')=date_format('" + date + "', '%Y-%m-%d')AND `peripheral_gps_data`.`idDevice`=" + id + " order by `peripheral_gps_data`.`createdAt` ASC;";
+        let query = "select * from dgroup";
+        let data = await db.sequelize.query(query);
+        return data[0];
+        // try{
+        //     var user = await db.users.findOne({
+        //         where: { idUser: id },
+        //
+        //         include: [{
+        //             model: db.devicesGroup,
+        //             as: "groups"
+        //             // include: [{
+        //             //     model: db.deviceModel
+        //             // }, {
+        //             //     model: db.gpsData,order: [['createdAt','DESC']],limit:1
+        //             // }
+        //             // ]
+        //         }]
+        //
+        //     });
+        //     return user.groups;
+        // }catch(error){console.log(error);}
     },
 
     getAll: async function() {
