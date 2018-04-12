@@ -53,7 +53,7 @@ const repository = {
 
     getGroups: async function(id) {
         // let query = "SELECT `peripheral_gps_data`.`lat`,`peripheral_gps_data`.`lng`,`peripheral_gps_data`.`createdAt` FROM `peripheral_gps_data` AS `peripheral_gps_data` INNER JOIN `devices` AS `device` ON `peripheral_gps_data`.`idDevice` = `device`.`idDevice` WHERE date_format(`peripheral_gps_data`.`createdAt`, '%Y-%m-%d')=date_format('" + date + "', '%Y-%m-%d')AND `peripheral_gps_data`.`idDevice`=" + id + " order by `peripheral_gps_data`.`createdAt` ASC;";
-        let query = "select dgroup.id as group_id, dgroup.label as group_label" +
+        let query = "select dgroup.id as group_id, dgroup.label as group_label, devices.label as device_label" +
             " from dgroup " +
             "inner join device_group on group_id = dgroup.id " +
             "inner join devices on devices.idDevice = device_group.device_id " +
