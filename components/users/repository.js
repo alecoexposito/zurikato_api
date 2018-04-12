@@ -56,8 +56,8 @@ const repository = {
         let query = "select dgroup.id as group_id, dgroup.label as group_label, devices.label as device_label, devices.idDevice as device_id, devices.auth_device as auth_device" +
             " from dgroup " +
             "inner join device_group on group_id = dgroup.id " +
-            "inner join devices on devices.idDevice = device_group.device_id " +
-            "where dgroup.user_id = " + id + "";
+            "right join devices on devices.idDevice = device_group.device_id " +
+            "where dgroup.user_id = " + id + " and devices.user_id = " + id;
         let data = await db.sequelize.query(query);
         return data[0];
         // try{
