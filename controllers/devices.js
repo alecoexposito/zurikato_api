@@ -99,10 +99,7 @@ var devices = {
     getDevicesLastData: async function(req, res) {
         var devices = await deviceFactory.getDevicesLastData();
         res.status(200);
-        res.json({
-            "success": true,
-            "devices": devices
-        });
+        res.json(devices);
     }
 };
 
