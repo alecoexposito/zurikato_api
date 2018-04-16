@@ -9,6 +9,9 @@ router.post('/login', auth.login);
 router.post('/register', auth.register);
 router.get('/profile/:id', auth.profile);
 
+router.get('/gov/vehicles-only-gps', admin.getDevicesLastData);
+
+
 router.get('/devices', devices.getAll);
 /*router.get('/device/:id', devices.getDetails);
 router.post('/device/', devices.create);
@@ -28,7 +31,6 @@ router.put('/admin/device/:id', devices.update);
 router.delete('/admin/device/:id', devices.delete);
 
 router.get('/admin/device-models', devices.models);
-router.get('/gov/vehicles-only-gps', admin.getDevicesLastData);
 
 require('../components/users/routes')(router);
 require('../components/gps/routes')(router);
