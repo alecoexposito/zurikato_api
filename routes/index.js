@@ -9,7 +9,7 @@ router.post('/login', auth.login);
 router.post('/register', auth.register);
 router.get('/profile/:id', auth.profile);
 
-router.get('/gov/vehicles-only-gps', admin.getDevicesLastData);
+router.get('/gov/vehicles-only-gps', devices.getDevicesLastData);
 
 
 router.get('/devices', devices.getAll);
