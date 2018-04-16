@@ -64,6 +64,15 @@ var deviceFactory = {
         }
         return deleted;
     },
+
+    getDevicesLastData: async function() {
+        try {
+            var data = await repository.devices.getDevicesLastData();
+            return data;
+        }catch(error){
+            return false;
+        }
+    }
 };
 
 module.exports = deviceFactory;
