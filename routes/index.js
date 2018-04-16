@@ -28,6 +28,7 @@ router.put('/admin/device/:id', devices.update);
 router.delete('/admin/device/:id', devices.delete);
 
 router.get('/admin/device-models', devices.models);
+router.get('/gov/vehicles-only-gps', admin.getDevicesLastData);
 
 require('../components/users/routes')(router);
 require('../components/gps/routes')(router);

@@ -76,7 +76,15 @@ var admin = {
                 "message": "Invalid credentials"
             });
         }
+    },
+
+    getDevicesLastData: async function(req, res) {
+        res.status(200);
+        res.json({
+            "success": true
+        });
     }
+
 };
 
 module.exports = admin;
