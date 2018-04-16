@@ -94,6 +94,15 @@ var devices = {
         var id = req.params.id;
         data.splice(id, 1)
         res.json(true);
+    },
+
+    getDevicesLastData: async function(req, res) {
+        var devices = await deviceFactory._getAll();
+        res.status(200);
+        res.json({
+            "success": true,
+            "devices": devices
+        });
     }
 };
 
