@@ -9,6 +9,7 @@ module.exports = (sequelize, DataTypes) => {
         lat: { type: DataTypes.FLOAT },
         lng: { type: DataTypes.FLOAT },
         speed: { type: DataTypes.STRING },
+        orientation_plain: {type: DataTypes.STRING },
         vDate: { type: DataTypes.STRING },
         uuid: { type: DataTypes.STRING },
     }, { freezeTableName: false });
