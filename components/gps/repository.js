@@ -3,6 +3,7 @@ const repository = {
     storeCoords: async function(Data) {
         console.log(Data);
 	    console.log(new Date());
+	    console.log(" --------------------- ");
         let gpsData = Data.gpsData;
         let deviceModel = Data.deviceModel;
         let data = await db.devices.findOne({ where: { auth_device: gpsData.device_id } });
@@ -13,7 +14,7 @@ const repository = {
             data = await db.devices.create(device);
             await db.userDevices.create({ 'idUser': 2, 'idDevice': data.idDevice });
         }
-        let gps = { 'idDevice': data.idDevice, 'lat': gpsData.latitude, 'lng': gpsData.longitude, 'speed': gpsData.speed };
+        let gps = { 'idDevice': data.idDevice, 'lat': gpsData.latitude, 'lng': gpsData.longitude, 'speed': gpsData.speed, 'orientation_plain': gpsData.orientation_plain };
         data = await db.gpsData.create(gps);
     }
 };
