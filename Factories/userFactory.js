@@ -47,13 +47,14 @@ var userFactory = {
     },
 
     _authenticate: async function(User) {
-        var data = await repository.users.findOneByEmail(User.email);
+        var data = await repository.users.findOneByUsername(User.username);
         if (data != null) {
             if (bcrypt.compareSync(User.pass, data.pass)) {
                 User.email = data.email;
                 User.label = data.label;
                 User.id = data.idUser;
                 User.pass = null;
+                User.username = data.username
                 if(data.auth_token == "") {
 			data.auth_token = genToken(repository.users.parseUser(data));
 		}
