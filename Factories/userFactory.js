@@ -47,7 +47,7 @@ var userFactory = {
     },
 
     _authenticate: async function(User) {
-        var data = await repository.users.findOneByUsername(User.username);
+        var data = await repository.users.findOneByUsername(User.email);
         if (data != null) {
             if (bcrypt.compareSync(User.pass, data.pass)) {
                 User.email = data.email;
