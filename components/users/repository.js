@@ -31,6 +31,10 @@ const repository = {
         var user = await db.users.findOne({ where: { email: email } });
         return user;
     },
+    findOneByUsername: async function (username) {
+        var user = await db.users.findOne({where: {username: username}});
+        return user;
+    },
     getDevices: async function(id) {
          try{
             var user = await db.users.findOne({
