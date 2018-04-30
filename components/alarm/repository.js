@@ -1,6 +1,7 @@
 var db = require('./db');
 const repository = {
     storeAlarms: async function(Data) {
+        console.log("Data: ", Data);
         let alarmData = Data.alarm_data;
         let code = await db.alarm_code.findOne({ where: { code: alarmData.device_info } });
         let device = await db.devices.findOne({ where: { auth_device: alarmData.device_id } });
