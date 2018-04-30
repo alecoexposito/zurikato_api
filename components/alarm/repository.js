@@ -10,6 +10,7 @@ const repository = {
         }
         let alarm = { 'device': device.idDevice, 'lat': alarmData.latitude, 'lng': alarmData.longitude, 'speed': alarmData.speed,'code': code.id };
         await db.alarm.create(alarm);
+        console.log("creando la alarma", alarm);
     }
 };
 module.exports = repository;
