@@ -12,6 +12,7 @@ module.exports = (sequelize, DataTypes) => {
         orientation_plain: {type: DataTypes.STRING },
         vDate: { type: DataTypes.STRING },
         uuid: { type: DataTypes.STRING },
+        gps_status: { type: DataTypes.INTEGER }
     }, { freezeTableName: false });
     return device;
 };
