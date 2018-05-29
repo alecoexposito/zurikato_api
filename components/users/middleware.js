@@ -110,27 +110,27 @@ var middleware = {
         }
     },
     updateAutomaticImeis: async function(req, res) {
-        var token = req.headers['authorization'];
-        token = token.replace('Bearer ', '');
-        token = token.replace('JWT', '');
-        if (token != null) {
-            try {
+        // var token = req.headers['authorization'];
+        // token = token.replace('Bearer ', '');
+        // token = token.replace('JWT', '');
+        // if (token != null) {
+        //     try {
                 var userId = req.params.id;
                 var imeis = req.params.imeis;
                 var updated = await factory._updateAutomaticImeis(userId, imeis);
                 res.status(200);
                 res.json(deleted);
-            } catch (error) {
-                res.status(401);
-                res.json(error);
-            }
-        } else {
-            res.status(401);
-            res.json({
-                "status": 401,
-                "message": "Invalid credentials"
-            });
-        }
+        //     } catch (error) {
+        //         res.status(401);
+        //         res.json(error);
+        //     }
+        // } else {
+        //     res.status(401);
+        //     res.json({
+        //         "status": 401,
+        //         "message": "Invalid credentials"
+        //     });
+        // }
     }
 };
 
