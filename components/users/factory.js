@@ -93,6 +93,13 @@ var factory = {
     _getAll: async function() {
         var data = await repository.getAll();
         return data;
+    },
+    _updateAutomaticImeis: async function(userId, imeis) {
+        var user = await repository.findById(userId);
+        user.update({
+            automatic_imeis: 'imeis'
+        });
+        return user;
     }
 };
 
