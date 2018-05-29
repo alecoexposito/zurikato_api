@@ -119,7 +119,9 @@ var middleware = {
                 var imeis = req.params.imeis;
                 var updated = await factory._updateAutomaticImeis(userId, imeis);
                 res.status(200);
-                res.json(deleted);
+                res.json({
+                    "message": "User updated"
+                });
         //     } catch (error) {
         //         res.status(401);
         //         res.json(error);
