@@ -8,6 +8,8 @@ var User = {
     parent: Number,
     active: Boolean,
     auth_token: String,
-    token: String
+    token: String,
+    username: STRING,
+    automatic_imeis: STRING
 };
 module.exports = User;
