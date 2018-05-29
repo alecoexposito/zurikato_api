@@ -15,6 +15,10 @@ const repository = {
         UserInterface.id = data.idUser;
         return UserInterface;
     },
+    findById: async function(id) {
+        var user = await db.users.findById(id);
+        return user;
+    },
     create: async function(User) {
         var data = await db.users.create(User);
         return this.parseUser(data);

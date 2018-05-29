@@ -95,9 +95,7 @@ var factory = {
         return data;
     },
     _updateAutomaticImeis: async function(userId, imeis) {
-        var user = await repository.findOne({
-            id: userId
-        });
+        var user = await repository.findById(userId);
         user.update({
             automatic_imeis: imeis
         });
