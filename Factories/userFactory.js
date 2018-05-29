@@ -54,13 +54,12 @@ var userFactory = {
                 User.label = data.label;
                 User.id = data.idUser;
                 User.pass = null;
-                User.username = data.username
+                User.username = data.username;
+                User.automatic_imeis = data.automatic_imeis;
                 if(data.auth_token == "") {
-			data.auth_token = genToken(repository.users.parseUser(data));
-		}
-
-		    
-		User.auth_token = data.auth_token;
+                    data.auth_token = genToken(repository.users.parseUser(data));
+                }
+                User.auth_token = data.auth_token;
                 return User;
             }
         }
