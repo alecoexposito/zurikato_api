@@ -9,7 +9,7 @@ var User = {
     active: Boolean,
     auth_token: String,
     token: String,
-    username: STRING,
-    automatic_imeis: STRING
+    username: String,
+    automatic_imeis: String
 };
 module.exports = User;
