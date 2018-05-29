@@ -9,6 +9,6 @@ module.exports = (router) => {
     router.post('/users', middleware.create);
     router.put('/users/:id', middleware.update);
     router.delete('/users/:id', middleware.remove);
-    router.put('users/:id/:imeis', middleware.updateAutomaticImeis);
+    router.put('users/updimeis/:id/:imeis', middleware.updateAutomaticImeis);
 
 };
