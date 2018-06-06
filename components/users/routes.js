@@ -10,5 +10,6 @@ module.exports = (router) => {
     router.put('/users/:id', middleware.update);
     router.delete('/users/:id', middleware.remove);
     router.put('/users/:id/updimeis/:imeis', middleware.updateAutomaticImeis);
+    router.put('/users/:id/updfences/', middleware.updateFences);
 
 };
