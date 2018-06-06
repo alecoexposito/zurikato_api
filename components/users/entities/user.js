@@ -16,7 +16,8 @@ module.exports = (sequelize, DataTypes) => {
         auth_token: DataTypes.STRING,
         token: DataTypes.STRING,
         username: DataTypes.STRING,
-        automatic_imeis: DataTypes.STRING
+        automatic_imeis: DataTypes.STRING,
+        fences: DataTypes.TEXT
     }, { freezeTableName: false });
     return user;
 };

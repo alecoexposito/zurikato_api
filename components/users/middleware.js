@@ -110,13 +110,31 @@ var middleware = {
         }
     },
     updateFences: async function(req, res) {
-        res.status(200);
-        res.json({
-            "body": req.body
-        });
+        var token = req.headers['authorization'];
+        token = token.replace('Bearer ', '');
+        token = token.replace('JWT', '');
+        if (token != null) {
+            try {
+                var userId = req.params.id;
+                var fences = req.body.fences;
+                var updated = await factory._updateFences(userId, fences);
+                res.status(200);
+                res.json({
+                    "message": "Fences updated"
+                });
+            } catch (error) {
+                res.status(401);
+                res.json(error);
+            }
+        } else {
+            res.status(401);
+            res.json({
+                "status": 401,
+                "message": "Invalid credentials"
+            });
+        }
     },
     updateAutomaticImeis: async function(req, res) {
-        console.log("------------ IN MIDDLEWARE ----------");
         var token = req.headers['authorization'];
         token = token.replace('Bearer ', '');
         token = token.replace('JWT', '');

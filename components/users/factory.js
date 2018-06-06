@@ -100,7 +100,15 @@ var factory = {
             automatic_imeis: imeis
         });
         return user;
+    },
+    _updateFences: async function(userId, fences) {
+        var user = await repository.findById(userId);
+        user.update({
+            fences: fences
+        });
+        return user;
     }
+
 };
 
 module.exports = factory;
