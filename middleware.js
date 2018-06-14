@@ -2,7 +2,7 @@ var jwt = require('jsonwebtoken');
 var secret = require('./secret');
 var validateUser = require(__dirname + '/controllers/auth').validateUser;
 module.exports = async function(req, res, next) {
-
+    console.log("En el middleware principal");
     var token = (req.body && req.body.access_token) || (req.query && req.query.access_token) || req.headers['x-access-token'] || req.headers['authorization'];
     var key = (req.body && req.body.x_key) || (req.query && req.query.x_key) || req.headers['x-key'];
 
