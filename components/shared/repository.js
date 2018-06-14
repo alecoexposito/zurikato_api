@@ -19,6 +19,7 @@ const repository = {
     // }
     getSharedScreen: async function(id) {
         let data = await db.sharedDevices.findOne({ where: { 'id': id }});
+        console.log("data returned: ", data);
         return data;
     }
 };
