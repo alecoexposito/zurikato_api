@@ -1,4 +1,4 @@
-var factory = require('./factory');
+var factory = require('./repository');
 var middleware = {
 
     // storeCoords: async function(req, res) {
@@ -14,8 +14,7 @@ var middleware = {
 
     getSharedScreen: async function (req, res) {
         try {
-            let data = await
-            let data = repository.getSharedScreen(req.params.id);
+            let data = await repository.getSharedScreen(req.params.id);
             res.status(200);
             res.json(data);
         } catch (error) {
