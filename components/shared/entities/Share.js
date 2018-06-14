@@ -5,7 +5,7 @@ module.exports = (sequelize, DataTypes) => {
             autoIncrement: true,
             primaryKey: true
         },
-        expiration_date: { type: DataTypes.DATETIME },
+        expiration_date: { type: DataTypes.DATE },
         url_hash: { type: DataTypes.STRING },
         uuid: { type: DataTypes.STRING },
     }, { freezeTableName: false });
