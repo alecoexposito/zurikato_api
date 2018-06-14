@@ -7,7 +7,6 @@ module.exports = (sequelize, DataTypes) => {
         },
         expiration_date: { type: DataTypes.DATE },
         url_hash: { type: DataTypes.STRING },
-        uuid: { type: DataTypes.STRING },
     }, { freezeTableName: false });
     return shares;
 };
