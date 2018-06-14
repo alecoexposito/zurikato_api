@@ -1,4 +1,4 @@
-var db = require('./db');
+var db = require('../../lib/db/db');
 const repository = {
     // storeCoords: async function(Data) {
     //     console.log(Data);
