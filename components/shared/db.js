@@ -9,4 +9,5 @@ db.shares = require('./entities/Share')(sequelize, Sequelize);
 
 db.devices.belongsToMany(db.shares, {through: 'DeviceShare'});
 db.shares.belongsToMany(db.devices, {through: 'DeviceShare'});
+db.shares.sync();
 module.exports = db;
