@@ -1,4 +1,4 @@
-var sharedMiddleware = require(__dirname + '../components/shared/repository');
+var sharedMiddleware = require('../components/shared/repository');
 var shared = {
 
     getSharedScreen: async function(req, res) {
