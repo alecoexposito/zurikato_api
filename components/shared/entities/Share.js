@@ -9,5 +9,5 @@ module.exports = (sequelize, DataTypes) => {
         url_hash: { type: DataTypes.STRING },
         uuid: { type: DataTypes.STRING },
     }, { freezeTableName: false });
-    return sharedDevice;
+    return shares;
 };
