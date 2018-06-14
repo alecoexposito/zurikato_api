@@ -4,7 +4,7 @@ var router = express.Router();
 var auth = require('../controllers/auth.js');
 var devices = require('../controllers/devices.js');
 var admin = require('../controllers/admin.js');
-var shared = require('../components/shared/middleware.js');
+var shared = require('../controllers/shared.js');
 
 router.post('/login', auth.login);
 router.post('/register', auth.register);
