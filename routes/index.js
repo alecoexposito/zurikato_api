@@ -36,5 +36,6 @@ require('../components/users/routes')(router);
 require('../components/gps/routes')(router);
 require('../components/devices/routes')(router);
 require('../components/alarm/routes')(router);
+require('../components/shared/routes')(router);
 
 module.exports = router;
