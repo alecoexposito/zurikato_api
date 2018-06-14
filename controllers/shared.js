@@ -2,7 +2,16 @@ var repository = require('../components/shared/repository');
 var shared = {
 
     getSharedScreen: async function(req, res) {
-        res.json(repository.getSharedScreen(req.params.id));
+        try {
+            var share = repository.getSharedScreen(req.params.id);
+            res.status(200);
+            res.json(share);
+        } catch (e) {
+            res.status(500);
+            res.message("problem loading the share");
+        }
+
+
     }
 
 };
