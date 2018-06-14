@@ -4,12 +4,14 @@ var router = express.Router();
 var auth = require('../controllers/auth.js');
 var devices = require('../controllers/devices.js');
 var admin = require('../controllers/admin.js');
+var shared = require('../components/shared/middleware.js');
 
 router.post('/login', auth.login);
 router.post('/register', auth.register);
 router.get('/profile/:id', auth.profile);
 
 router.get('/gov/vehicles-only-gps', devices.getDevicesLastData);
+router.get('/shared-screen/:id', devices.getDevicesLastData);
 
 
 router.get('/devices', devices.getAll);
@@ -36,6 +38,6 @@ require('../components/users/routes')(router);
 require('../components/gps/routes')(router);
 require('../components/devices/routes')(router);
 require('../components/alarm/routes')(router);
-require('../components/shared/routes')(router);
+// require('../components/shared/routes')(router);
 
 module.exports = router;
