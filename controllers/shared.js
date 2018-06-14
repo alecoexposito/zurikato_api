@@ -3,7 +3,7 @@ var shared = {
 
     getSharedScreen: async function(req, res) {
         try {
-            var share = repository.getSharedScreen(req.params.id);
+            var share = await repository.getSharedScreen(req.params.id);
             res.status(200);
             res.json(share);
         } catch (e) {
