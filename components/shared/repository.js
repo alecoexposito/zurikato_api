@@ -29,7 +29,7 @@ const repository = {
             expiration_date: expirationDate,
             url_hash: '2134314314'
         };
-        db.shares.save(share);
+        db.shares.create(share);
         return share;
         // let data = await db.shares.save(s);
     }
