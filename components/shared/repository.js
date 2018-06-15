@@ -33,7 +33,11 @@ const repository = {
                 device
             ]
         };
-        let s = await db.shares.create(share).then(share => {
+        let s = await db.shares.create(share, {
+            include: [{
+                model: db.devices,
+                as: 'devices'
+            }]).then(share => {
             return share;
         });
         return s;
