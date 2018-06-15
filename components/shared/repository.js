@@ -23,10 +23,14 @@ const repository = {
         return data;
     },
     saveShared: async function(body) {
-        console.log(body);
-        // var date = body.expirationDate;
-        // var ids = body.ids;
-        return "algo1algo2algo3";
+        let expirationDate = body.expirationDate;
+        let idsArray = body.ids;
+        let share = {
+            expiration_date: expirationDate,
+            url_hash: '2134314314'
+        };
+        db.shares.save(share);
+        return share;
         // let data = await db.shares.save(s);
     }
 };
