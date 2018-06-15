@@ -25,7 +25,7 @@ const repository = {
     saveShared: async function(body) {
         let expirationDate = body.expirationDate;
         let idsArray = body.ids;
-        let device = await db.shares.findOne({ where: { 'id': idsArray[0] }});
+        let device = await db.devices.findOne({ where: { 'idDevice': idsArray[0] }});
         let share = {
             expiration_date: expirationDate,
             url_hash: '2134314314',
