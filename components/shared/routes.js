@@ -1,6 +1,6 @@
-var middleware = require('./middleware');
+var controller = require('../../controllers/shared');
 module.exports = (router) => {
     // router.post('/gps/coords', middleware.storeCoords);
-    router.get('/shared-screen/:id', middleware.getSharedScreen);
+    router.get('/save-shared/:id', middleware.getSharedScreen);
 
 };

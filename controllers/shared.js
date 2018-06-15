@@ -12,6 +12,23 @@ var shared = {
         }
 
 
+    },
+    saveShared: async function(req, res) {
+        var token = req.headers['authorization'];
+        token = token.replace('Bearer ','');
+        token = token.replace('JWT','');
+        if(token != null){
+            var sharedLink = await repository.saveShared(req.body);
+            res.status(200);
+            res.json(sharedLink);
+        }
+        else{
+            res.status(401);
+            res.json({
+                "status": 401,
+                "message": "Invalid credentials"
+            });
+        }
     }
 
 };

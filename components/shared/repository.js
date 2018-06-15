@@ -21,6 +21,13 @@ const repository = {
         let data = await db.shares.findOne({ where: { 'id': id }});
         console.log("data returned: ", data);
         return data;
+    },
+    saveShared: async function(body) {
+        console.log(body);
+        // var date = body.expirationDate;
+        // var ids = body.ids;
+        return "algo1algo2algo3";
+        // let data = await db.shares.save(s);
     }
 };
 module.exports = repository;
