@@ -37,7 +37,7 @@ const repository = {
             include: [{
                 model: db.devices,
                 as: 'devices'
-            }]).then(share => {
+            }]}).then(share => {
             return share;
         });
         return s;
