@@ -35,6 +35,9 @@ const repository = {
             return share;
         });
         s.addDevice({idDevice: device.idDevice});
+        db.shares.update(s).then(share => {
+            console.log("share updated");
+        });
         return s;
     }
 };
