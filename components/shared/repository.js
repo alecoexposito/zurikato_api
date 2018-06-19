@@ -33,12 +33,8 @@ const repository = {
         let s = await db.shares.create(share).then(share => {
             return share;
         });
-        const devicesShare = db.sequelize.define('device_share', {
-            device_id: { type: DataTypes.INTEGER },
-            share_id: { type: DataTypes.INTEGER },
-        }, { freezeTableName: false });
 
-        devicesShare.create({
+        db.deviceShare.create({
             device_id: device.idDevice,
             share_id: s.id
         }).then(ds => {
