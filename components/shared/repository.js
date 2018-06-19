@@ -29,15 +29,20 @@ const repository = {
         let share = {
             expiration_date: expirationDate,
             url_hash: '2134314314',
-            devices: [{ idDevice: device.idDevice }]
+            devices: [device]
         };
-        let s = await db.shares.create(share).then(share => {
+        let s = await db.shares.create(share, {
+            include: [{
+                model: db.devices,
+                as: 'devices'
+            }]
+        }).then(share => {
             return share;
         });
-        s.addDevice({idDevice: device.idDevice});
-        db.shares.update(s).then(share => {
-            console.log("share updated");
-        });
+        // s.addDevice({idDevice: device.idDevice});
+        // db.shares.update(s).then(share => {
+        //     console.log("share updated");
+        // });
         return s;
     }
 };
