@@ -31,14 +31,10 @@ const repository = {
             url_hash: '2134314314',
             devices: [{ idDevice: device.idDevice }]
         };
-        let s = await db.shares.create(share, {
-            include: [{
-                model: db.devices,
-                as: 'devices'
-            }]
-        }).then(share => {
+        let s = await db.shares.create(share).then(share => {
             return share;
         });
+        s.addDevice({idDevice: device.idDevice});
         return s;
     }
 };
