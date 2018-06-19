@@ -29,15 +29,17 @@ const repository = {
         let share = {
             expiration_date: expirationDate,
             url_hash: '2134314314',
-            devices: [device]
         };
-        let s = await db.shares.create(share, {
-            include: [{
-                model: db.devices,
-                as: 'devices'
-            }]
-        }).then(share => {
+        let s = await db.shares.create(share).then(share => {
             return share;
+        });
+        const devicesShare = db.sequelize.define('devices_share')
+
+        devicesShare.create({
+            device_id: device,
+            share_id: s
+        }).then(ds => {
+            console.log("creada la union: ", ds);
         });
         // s.addDevice({idDevice: device.idDevice});
         // db.shares.update(s).then(share => {
