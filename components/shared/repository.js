@@ -33,11 +33,11 @@ const repository = {
         let s = await db.shares.create(share).then(share => {
             return share;
         });
-        const devicesShare = db.sequelize.define('devices_share')
+        const devicesShare = db.sequelize.define('device_share')
 
         devicesShare.create({
-            device_id: device,
-            share_id: s
+            device_id: device.idDevice,
+            share_id: s.id
         }).then(ds => {
             console.log("creada la union: ", ds);
         });
