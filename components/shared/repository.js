@@ -1,4 +1,5 @@
 var db = require('../../lib/db/db');
+var crypto = require('crypto');
 const repository = {
     // storeCoords: async function(Data) {
     //     console.log(Data);
@@ -25,10 +26,11 @@ const repository = {
     saveShared: async function(body) {
         let expirationDate = body.expirationDate;
         let idsArray = body.ids;
+        let urlHash = crypto.createHash('md5').update(data).digest("hex");
         let device = await db.devices.findOne({ where: { 'idDevice': idsArray[0] }});
         let share = {
             expiration_date: expirationDate,
-            url_hash: '2134314314',
+            url_hash: urlHash,
         };
         let s = await db.shares.create(share).then(share => {
             return share;
