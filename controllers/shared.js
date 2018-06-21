@@ -8,7 +8,7 @@ var shared = {
             res.json(share);
         } catch (e) {
             res.status(500);
-            res.message("problem loading the share");
+            // res.message("problem loading the share");
         }
 
 
