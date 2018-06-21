@@ -23,7 +23,12 @@ const repository = {
             where: { 'id': id },
             include: [{
                 model: db.devices,
-                as: 'devices'
+                as: 'devices',
+                include: [{
+                    model: db.deviceModel
+                }, {
+                    model: db.gpsData,order: [['createdAt','DESC']],limit:1
+                }
             }]
         });
         console.log("data returned: ", data);
