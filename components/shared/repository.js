@@ -22,7 +22,8 @@ const repository = {
         let data = await db.shares.findOne({
             where: { 'id': id },
             include: [{
-                model: db.devices
+                model: db.devices,
+                as: 'devices'
             }]
         });
         console.log("data returned: ", data);
