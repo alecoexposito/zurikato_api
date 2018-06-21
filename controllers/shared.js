@@ -7,8 +7,13 @@ var shared = {
             res.status(200);
             res.json(share);
         } catch (e) {
+            console.log(e);
             res.status(500);
-            // res.message("problem loading the share");
+            res.json({
+                "status": 500,
+                "message": "Oops something went wrong",
+                "error": e
+            });
         }
 
 
