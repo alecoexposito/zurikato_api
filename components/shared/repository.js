@@ -19,7 +19,12 @@ const repository = {
     //     data = await db.gpsData.create(gps);
     // }
     getSharedScreen: async function(id) {
-        let data = await db.shares.findOne({ where: { 'id': id }});
+        let data = await db.shares.findOne({
+            where: { 'id': id },
+            include: [{
+                model: db.devices
+            }]
+        });
         console.log("data returned: ", data);
         return data;
     },
