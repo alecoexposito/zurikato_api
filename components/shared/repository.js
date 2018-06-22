@@ -25,8 +25,6 @@ const repository = {
                 model: db.devices,
                 as: 'devices',
                 include: [{
-                    model: db.deviceModel
-                }, {
                     model: db.gpsData,order: [['createdAt','DESC']]
                 }]
             }]
