@@ -46,7 +46,7 @@ const repository = {
         let s = await db.shares.create(share).then(share => {
             return share;
         });
-        for(var i = 0; i < idsArray.length(); i++) {
+        for(var i = 0; i < idsArray.length; i++) {
             let device = await db.devices.findOne({ where: { 'idDevice': idsArray[i] }});
             db.deviceShare.create({
                 device_id: device.idDevice,
