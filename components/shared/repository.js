@@ -25,7 +25,10 @@ const repository = {
                 model: db.devices,
                 as: 'devices',
                 include: [{
-                    model: db.gpsData,order: [['createdAt','DESC']]
+                    model: db.deviceModel
+                }, {
+                    model: db.gpsData,order: [['createdAt','DESC']],
+                    limit: 1
                 }]
             }]
         });
@@ -36,7 +39,6 @@ const repository = {
         let expirationDate = body.expirationDate;
         let idsArray = body.ids;
         let urlHash = crypto.createHash('md5').update(new Date().getTime().toString()).digest("hex");
-        let device = await db.devices.findOne({ where: { 'idDevice': idsArray[0] }});
         let share = {
             expiration_date: expirationDate,
             url_hash: urlHash,
@@ -44,13 +46,16 @@ const repository = {
         let s = await db.shares.create(share).then(share => {
             return share;
         });
+        for(var i = 0; i < idsArray.length(); i++) {
+            let device = await db.devices.findOne({ where: { 'idDevice': idsArray[i] }});
+            db.deviceShare.create({
+                device_id: device.idDevice,
+                share_id: s.id
+            }).then(ds => {
+                console.log("creada la union: ", ds);
+            });
 
-        db.deviceShare.create({
-            device_id: device.idDevice,
-            share_id: s.id
-        }).then(ds => {
-            console.log("creada la union: ", ds);
-        });
+        }
         // s.addDevice({idDevice: device.idDevice});
         // db.shares.update(s).then(share => {
         //     console.log("share updated");
