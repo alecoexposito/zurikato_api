@@ -12,10 +12,10 @@ const repository = {
     },
     speedAverage: async function(id, startDate, endDate) {
         let query = "SELECT sum(speed)/count(1) as speed, createdAt as date " +
-            "FROM `peripheral_gps_data` AS `peripheral_gps_data` " +
-            "WHERE str_to_date(`peripheral_gps_data`.`createdAt`, '%Y-%m-%d %H:%i:%s') BETWEEN str_to_date('" + startDate + "', '%Y-%m-%d %H:%i:%s') AND str_to_date('" + endDate + "', '%Y-%m-%d %H:%i:%s') AND `peripheral_gps_data`.`idDevice`=" + id + " " +
-            "order by str_to_date(`peripheral_gps_data`.`createdAt`,'%Y-%m-%d %H:%i:%s') ASC" +
-            "group by day(createdAt), hour(createdAt);";
+            " FROM `peripheral_gps_data` AS `peripheral_gps_data` " +
+            " WHERE str_to_date(`peripheral_gps_data`.`createdAt`, '%Y-%m-%d %H:%i:%s') BETWEEN str_to_date('" + startDate + "', '%Y-%m-%d %H:%i:%s') AND str_to_date('" + endDate + "', '%Y-%m-%d %H:%i:%s') AND `peripheral_gps_data`.`idDevice`=" + id + " " +
+            " order by str_to_date(`peripheral_gps_data`.`createdAt`,'%Y-%m-%d %H:%i:%s') ASC" +
+            " group by day(createdAt), hour(createdAt);";
         let data = await db.sequelize.query(query);
         return data[0];
     }
