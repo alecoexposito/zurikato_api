@@ -15,7 +15,7 @@ var middleware = {
     speedAverage: async function(req, res) {
         let start_date = req.query.start_date;
         let end_date = req.query.end_date;
-        var records = await factory._history(req.params.id, start_date, end_date);
+        var records = await factory._speedAverage(req.params.id, start_date, end_date);
         res.json(histories);
     },
 };
