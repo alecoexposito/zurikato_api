@@ -9,5 +9,6 @@ module.exports = (router) => {
     //router.post('/devices', middleware.create);
     //router.put('/devices/:id', middleware.update);
     //router.delete('/devices/:id', middleware.remove);
+    router.get('/devices/:id/speedAverage', middleware.history);
 
 };
