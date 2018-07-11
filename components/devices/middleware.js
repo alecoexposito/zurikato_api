@@ -18,6 +18,13 @@ var middleware = {
         var records = await factory._speedAverage(req.params.id, start_date, end_date);
         res.json(records);
     },
+    alarmsByType: async function(req, res) {
+        let start_date = req.query.start_date;
+        let end_date = req.query.end_date;
+        var records = await factory._alarmsByType(req.params.id, start_date, end_date);
+        res.json(records);
+    },
+
 };
 
 module.exports = middleware;

@@ -6,6 +6,15 @@ const config = require('../../config');
 var repository = require('./repository');
 var factory = {
 
+    _alarmsByType: async function(id, start_date, end_date) {
+        let records = [];
+        try {
+            records = await repository.alarmsByType(id, start_date, end_date);
+        } catch (error) {
+            records = [];
+        }
+        return records;
+    },
     _speedAverage: async function(id, start_date, end_date) {
         let records = [];
         try {

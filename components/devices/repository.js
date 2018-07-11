@@ -17,6 +17,15 @@ const repository = {
             " group by date_format(createdAt, '%m/%d/%Y %H');";
         let data = await db.sequelize.query(query);
         return data[0];
+    },
+    alarmsByType: async function(id, startDate, endDate) {
+        let query = "SELECT count(1), alarm_code.readable as code " +
+            " FROM alarm " +
+            " inner join alarm_code on alarm.code = alarm_code.id " +
+            " WHERE str_to_date(`alarm`.`createdAt`, '%Y-%m-%d %H:%i:%s') BETWEEN str_to_date('" + startDate + "', '%Y-%m-%d %H:%i:%s') AND str_to_date('" + endDate + "', '%Y-%m-%d %H:%i:%s') AND `alarm`.`device`=" + id + " " +
+            " group by alarm_code.readable;";
+        let data = await db.sequelize.query(query);
+        return data[0];
     }
 };
 module.exports = repository;
