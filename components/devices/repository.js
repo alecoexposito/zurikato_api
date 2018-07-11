@@ -11,7 +11,7 @@ const repository = {
         return data[0];
     },
     speedAverage: async function(id, startDate, endDate) {
-        let query = "SELECT sum(speed)/count(1) as speed, date_format(createdAt, '%m/%d/%Y %H') as date " +
+        let query = "SELECT sum(speed)/count(1) as data, date_format(createdAt, '%m/%d/%Y %H') as label " +
             " FROM `peripheral_gps_data` AS `peripheral_gps_data` " +
             " WHERE str_to_date(`peripheral_gps_data`.`createdAt`, '%Y-%m-%d %H:%i:%s') BETWEEN str_to_date('" + startDate + "', '%Y-%m-%d %H:%i:%s') AND str_to_date('" + endDate + "', '%Y-%m-%d %H:%i:%s') AND `peripheral_gps_data`.`idDevice`=" + id + " " +
             " group by date_format(createdAt, '%m/%d/%Y %H');";
@@ -19,7 +19,7 @@ const repository = {
         return data[0];
     },
     alarmsByType: async function(id, startDate, endDate) {
-        let query = "SELECT count(1), alarm_code.readable as code " +
+        let query = "SELECT count(1) as data, alarm_code.readable as label " +
             " FROM alarm " +
             " inner join alarm_code on alarm.code = alarm_code.id " +
             " WHERE str_to_date(`alarm`.`createdAt`, '%Y-%m-%d %H:%i:%s') BETWEEN str_to_date('" + startDate + "', '%Y-%m-%d %H:%i:%s') AND str_to_date('" + endDate + "', '%Y-%m-%d %H:%i:%s') AND `alarm`.`device`=" + id + " " +
