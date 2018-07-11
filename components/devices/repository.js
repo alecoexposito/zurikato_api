@@ -28,7 +28,8 @@ const repository = {
         return data[0];
     },
     coordinatesByDates: async function(id, startDate, endDate) {
-        let query = "SELECT date_format(`peripheral_gps_data`.`createdAt`,'%m/%d/%Y %H') as day,`peripheral_gps_data`.`lat`,`peripheral_gps_data`.`lng` FROM `peripheral_gps_data` AS `peripheral_gps_data` INNER JOIN `devices` AS `device` ON `peripheral_gps_data`.`idDevice` = `device`.`idDevice` WHERE str_to_date(`peripheral_gps_data`.`createdAt`, '%Y-%m-%d %H:%i:%s') BETWEEN str_to_date('" + startDate + "', '%Y-%m-%d %H:%i:%s') AND str_to_date('" + endDate + "', '%Y-%m-%d %H:%i:%s') AND `peripheral_gps_data`.`idDevice`=" + id + " order by str_to_date(`peripheral_gps_data`.`createdAt`,'%Y-%m-%d %H:%i:%s') ASC;";
+        let query = "SELECT date_format(`peripheral_gps_data`.`createdAt`,'%m/%d/%Y %H:00') as day,`peripheral_gps_data`.`lat`,`peripheral_gps_data`.`lng` " +
+            "FROM `peripheral_gps_data` AS `peripheral_gps_data` INNER JOIN `devices` AS `device` ON `peripheral_gps_data`.`idDevice` = `device`.`idDevice` WHERE str_to_date(`peripheral_gps_data`.`createdAt`, '%Y-%m-%d %H:%i:%s') BETWEEN str_to_date('" + startDate + "', '%Y-%m-%d %H:%i:%s') AND str_to_date('" + endDate + "', '%Y-%m-%d %H:%i:%s') AND `peripheral_gps_data`.`idDevice`=" + id + " order by str_to_date(`peripheral_gps_data`.`createdAt`,'%Y-%m-%d %H:%i:%s') ASC;";
         let data = await db.sequelize.query(query);
         return data[0];
     }
