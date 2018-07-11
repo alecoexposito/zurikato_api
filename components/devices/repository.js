@@ -11,7 +11,7 @@ const repository = {
         return data[0];
     },
     speedAverage: async function(id, startDate, endDate) {
-        let query = "SELECT speed ' Km/h' as data, date_format(createdAt, '%m/%d/%Y %H:%i:%s') as label " +
+        let query = "SELECT speed as data, date_format(createdAt, '%m/%d/%Y %H:%i:%s') as label " +
             " FROM `peripheral_gps_data` AS `peripheral_gps_data` " +
             " WHERE str_to_date(`peripheral_gps_data`.`createdAt`, '%Y-%m-%d %H:%i:%s') BETWEEN str_to_date('" + startDate + "', '%Y-%m-%d %H:%i:%s') AND str_to_date('" + endDate + "', '%Y-%m-%d %H:%i:%s') AND `peripheral_gps_data`.`idDevice`=" + id + " " +
             " ;";
