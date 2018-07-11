@@ -22,7 +22,7 @@ const repository = {
         let query = "SELECT count(1) as data, alarm_code.readable as label " +
             " FROM alarm " +
             " inner join alarm_code on alarm.code = alarm_code.id " +
-            " WHERE str_to_date(`alarm`.`createdAt`, '%Y-%m-%d %H:%i:%s') BETWEEN str_to_date('" + startDate + "', '%Y-%m-%d %H:%i:%s') AND str_to_date('" + endDate + "', '%Y-%m-%d %H:%i:%s') AND `alarm`.`device`=" + id + " " +
+            " WHERE alarm_code.code in (100, '000') and str_to_date(`alarm`.`createdAt`, '%Y-%m-%d %H:%i:%s') BETWEEN str_to_date('" + startDate + "', '%Y-%m-%d %H:%i:%s') AND str_to_date('" + endDate + "', '%Y-%m-%d %H:%i:%s') AND `alarm`.`device`=" + id + " " +
             " group by alarm_code.readable;";
         let data = await db.sequelize.query(query);
         return data[0];
