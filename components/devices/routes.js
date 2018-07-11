@@ -11,5 +11,6 @@ module.exports = (router) => {
     //router.delete('/devices/:id', middleware.remove);
     router.get('/devices/:id/speedAverage', middleware.speedAverage);
     router.get('/devices/:id/alarmsByType', middleware.alarmsByType);
+    router.get('/devices/:id/coordinatesByDates', middleware.coordinatesByDates);
 
 };
