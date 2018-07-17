@@ -49,7 +49,7 @@ const repository = {
                 model: db.devices,
                 where: {
                     trashed: {
-                        [Op.ne]: 1
+                        [Op.or]: [null, 0]
                     }
                 },
                 include: [{
