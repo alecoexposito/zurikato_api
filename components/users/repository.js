@@ -44,8 +44,10 @@ const repository = {
          try{
             var user = await db.users.findOne({
             where: {
-                idUser: id,
-                '$db.deviceModel.trashed$': 0
+                $and: {
+                    { idUser: id },
+                    {'$db.deviceModel.trashed$': 0 }
+                }
             },
             //
             include: [{
