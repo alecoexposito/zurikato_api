@@ -48,9 +48,7 @@ const repository = {
             include: [{
                 model: db.devices,
                 where: {
-                    trashed: {
-                        [Op.or]: [null, 0]
-                    }
+                    trashed: 0
                 },
                 include: [{
                         model: db.deviceModel
