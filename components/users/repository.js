@@ -43,13 +43,13 @@ const repository = {
         const Op = Sequelize.Op
          try{
             var user = await db.users.findOne({
-            where: { idUser: id },
+            where: {
+                idUser: id,
+                '$db.deviceModel$': 0
+            },
             //
             include: [{
                 model: db.devices,
-                where: {
-                    trashed: 0
-                },
                 include: [{
                         model: db.deviceModel
                     }, {
