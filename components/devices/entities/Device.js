@@ -15,7 +15,7 @@ module.exports = (sequelize, DataTypes)=>{
         activation_date: { type: DataTypes.DATE},
         expiration_date: { type: DataTypes.DATE},
         panic_button: { type: DataTypes.INTEGER },
-        trashed: { type: DataTypes.INTEGER }
+        trashed: { type: DataTypes.BOOLEAN }
     }, {freezeTableName: false});
     return device;
 };
