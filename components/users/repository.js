@@ -45,7 +45,7 @@ const repository = {
             where: {
                 $and: [
                     { idUser: id },
-                    // {'$db.deviceModel.trashed$': 0 }
+                    {'$db.devices.trashed$': 0 }
                 ]
             },
             include: [{
