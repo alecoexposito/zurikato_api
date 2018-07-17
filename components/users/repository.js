@@ -40,13 +40,12 @@ const repository = {
         return user;
     },
     getDevices: async function(id) {
-        const Op = Sequelize.Op
          try{
             var user = await db.users.findOne({
             where: {
                 $and: [
                     { idUser: id },
-                    {'$db.deviceModel.trashed$': 0 }
+                    // {'$db.deviceModel.trashed$': 0 }
                 ]
             },
             include: [{
