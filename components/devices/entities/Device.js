@@ -14,7 +14,8 @@ module.exports = (sequelize, DataTypes)=>{
         remark: { type: DataTypes.STRING},
         activation_date: { type: DataTypes.DATE},
         expiration_date: { type: DataTypes.DATE},
-        panic_button: { type: DataTypes.INTEGER }
+        panic_button: { type: DataTypes.INTEGER },
+        trashed: { type: DataTypes.INTEGER }
     }, {freezeTableName: false});
     return device;
 };
