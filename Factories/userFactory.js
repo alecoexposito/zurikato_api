@@ -57,6 +57,7 @@ var userFactory = {
                 User.username = data.username;
                 User.automatic_imeis = data.automatic_imeis;
                 User.fences = data.fences;
+                User.company_name = data.company_name;
                 if(data.auth_token == "") {
                     data.auth_token = genToken(repository.users.parseUser(data));
                 }
