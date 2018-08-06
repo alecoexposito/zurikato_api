@@ -49,7 +49,7 @@ const repository = {
             },
             include: [{
                 model: db.devices,
-                where: { trashed: 0},
+                where: { trashed: 0 },
                 include: [{
                         model: db.deviceModel
                     }, {
@@ -59,7 +59,11 @@ const repository = {
             }]
             
         });
-        return user.devices;
+        var result = user.devices;
+        for(var i = 0; i < result.length; i++) {
+            result[i].company_name = user.company_name;
+        }
+        return result;
          }catch(error){console.log(error);}
     },
 
