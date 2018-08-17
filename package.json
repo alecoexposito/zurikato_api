@@ -31,6 +31,7 @@
         "nodemon": "^1.14.7",
         "sequelize": "^4.30.1",
         "socketcluster": "^9.3.3",
+        "socketcluster-server": "^13.1.5",
         "system-sleep": "^1.3.6"
     }
 }

@@ -1,4 +1,5 @@
 var userFactory = require(__dirname + '/../Factories/userFactory');
+// var server = require(__dirname + "/../server");
 var admin = {
 
     getAllCustomers: async function(req, res) {

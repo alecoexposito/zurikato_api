@@ -13,6 +13,7 @@ router.get('/profile/:id', auth.profile);
 router.get('/gov/vehicles-only-gps', devices.getDevicesLastData);
 router.get('/shared-screen/:id', shared.getSharedScreen);
 router.post('/save-share', shared.saveShared);
+// router.post('/resend', admin.resend)
 
 
 router.get('/devices', devices.getAll);
