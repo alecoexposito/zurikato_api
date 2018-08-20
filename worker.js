@@ -41,19 +41,21 @@ class Worker extends SCWorker {
         //app.all('/api/v1/device/*', [middleware]);
         app.all('/api/v1/admin/*', [middleware]);
 
+        // app.use(bodyParser.urlencoded({
+        //     extended: true
+        // }));
+        // app.use(bodyParser.json());
         var router2 = express.Router();
         router2.post('/resend', function (req, res) {
-            console.log(req.body);
             scServer.exchange.publish("bridgeSocket", req.body);
-            res.json({hola: 'mundo'});
+            res.json(req.body);
         });
         app.use('/api/v1/', [require('./routes'), router2]);
         httpServer.on('request', app);
         scServer.on('connection', function(socket) {
             console.log("alguien se conecto al server");
         });
-        scServer.exchange.publish("bridgeSocket", "testing");
-       
+
     }
 }
 new Worker();
