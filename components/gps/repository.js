@@ -6,11 +6,11 @@ const repository = {
 	    console.log(" --------------------- ");
         let gpsData = Data.gpsData;
         let deviceModel = Data.deviceModel;
+        let data = null;
         if(deviceModel == 'MDVR') {
-            let data = await db.devices.findOne({ where: { mdvr_number: gpsData.idDevice } });
-            console.log("data despues de la consulta: ", data.idDevice);
+            data = await db.devices.findOne({ where: { mdvr_number: gpsData.idDevice } });
         } else {
-            let data = await db.devices.findOne({ where: { auth_device: gpsData.device_id } });
+            data = await db.devices.findOne({ where: { auth_device: gpsData.device_id } });
             if (data == null) {
                 let modelId = 2;
                 if (deviceModel == 'BB') { modelId = 1; }
