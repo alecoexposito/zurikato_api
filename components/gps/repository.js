@@ -7,7 +7,7 @@ const repository = {
         let gpsData = Data.gpsData;
         let deviceModel = Data.deviceModel;
         if(deviceModel == 'MDVR') {
-            let data = await db.devices.findOne({ where: { mdvr_id: gpsData.idDevice } });
+            let data = await db.devices.findOne({ where: { mdvr_number: gpsData.idDevice } });
         } else {
             let data = await db.devices.findOne({ where: { auth_device: gpsData.device_id } });
             if (data == null) {
