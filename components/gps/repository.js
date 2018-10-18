@@ -18,6 +18,7 @@ const repository = {
                 await db.userDevices.create({ 'idUser': 2, 'idDevice': data.idDevice });
             }
         }
+        console.log("id from database: ", data.idDevice);
         let gps = { 'idDevice': data.idDevice, 'lat': gpsData.latitude, 'lng': gpsData.longitude, 'speed': gpsData.speed, 'orientation_plain': gpsData.orientation_plain, 'gps_status': gpsData.gps_status };
         console.log("gps before create: ", gps);
         data = await db.gpsData.create(gps);
