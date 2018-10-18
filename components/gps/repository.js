@@ -8,6 +8,7 @@ const repository = {
         let deviceModel = Data.deviceModel;
         if(deviceModel == 'MDVR') {
             let data = await db.devices.findOne({ where: { mdvr_number: gpsData.idDevice } });
+            console.log("data despues de la consulta: ", data);
         } else {
             let data = await db.devices.findOne({ where: { auth_device: gpsData.device_id } });
             if (data == null) {
