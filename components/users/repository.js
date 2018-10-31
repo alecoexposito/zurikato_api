@@ -73,6 +73,7 @@ const repository = {
             " from dgroup " +
             "inner join device_group on group_id = dgroup.id " +
             "right join devices on devices.idDevice = device_group.device_id " +
+            "inner join peripheral_gps_data on devices.idDevice = peripheral_gps_data.idDevice"
             "where (dgroup.user_id = " + id + " or dgroup.id is null) and devices.user_id = " + id  + " and (devices.trashed is null or devices.trashed = 0)";
         let data = await db.sequelize.query(query);
         return data[0];
