@@ -1,7 +1,7 @@
 var db = require('../../lib/db/db');
 const repository = {
     storeCoords: async function(Data) {
-        console.log(Data);
+        // console.log("en el store coords", Data);
 	    console.log(new Date());
 	    console.log(" --------------------- ");
         let gpsData = Data.gpsData;
@@ -21,7 +21,9 @@ const repository = {
         }
         console.log("id from database: ", data.idDevice);
         let gps = { 'idDevice': data.idDevice, 'lat': gpsData.latitude, 'lng': gpsData.longitude, 'speed': gpsData.speed, 'orientation_plain': gpsData.orientation_plain, 'gps_status': gpsData.gps_status };
+        console.log("gpsdata: ", gpsData);
         if(gpsData.updatedAt) {
+            console.log("createdAt is in the data");
             gps.createdAt = gpsData.createdAt;
             gps.updatedAt = gpsData.updatedAt;
         }
