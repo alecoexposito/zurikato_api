@@ -8,11 +8,14 @@ const repository = {
         let deviceModel = Data.deviceModel;
         let data = null;
         let modelId = 2;
+        let mdvrNumber = null;
         console.log("STORE COORDS: ", Data);
-        if(deviceModel == 'MDVR')
+        if(deviceModel == 'MDVR') {
             modelId = 3;
-        else if(deviceModel == 'BB')
+            mdvrNumber = gpsData.idDevice;
+        } else if(deviceModel == 'BB') {
             modelId = 1;
+        }
 
         if(deviceModel == 'MDVR') {
             data = await db.devices.findOne({ where: { mdvr_number: gpsData.idDevice } });
@@ -20,7 +23,7 @@ const repository = {
             data = await db.devices.findOne({ where: { auth_device: gpsData.device_id } });
         }
         if (data == null) {
-            let device = { 'idDeviceModel': modelId, 'label': deviceModel, 'auth_device': gpsData.device_id };
+            let device = { 'idDeviceModel': modelId, 'label': deviceModel, 'auth_device': gpsData.device_id, 'mdvr_number': mdvrNumber };
             console.log("CREANDO EL DEVICE: ", device);
             data = await db.devices.create(device);
             // await db.userDevices.create({ 'idUser': 2, 'idDevice': data.idDevice });
