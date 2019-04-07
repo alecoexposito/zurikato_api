@@ -15,17 +15,17 @@ const repository = {
                 let modelId = 2;
                 if (deviceModel == 'BB') { modelId = 1; }
                 let device = { 'idDeviceModel': modelId, 'label': deviceModel, 'auth_device': gpsData.device_id };
+                console.log("CREANDO EL DEVICE: ", device);
                 data = await db.devices.create(device);
-                await db.userDevices.create({ 'idUser': 2, 'idDevice': data.idDevice });
+                // await db.userDevices.create({ 'idUser': 2, 'idDevice': data.idDevice });
             }
         }
         console.log("id from database: ", data.idDevice);
         let gps = { 'idDevice': data.idDevice, 'lat': gpsData.latitude, 'lng': gpsData.longitude, 'speed': gpsData.speed, 'orientation_plain': gpsData.orientation_plain, 'gps_status': gpsData.gps_status };
         console.log("gpsdata: ", gpsData);
-        if(gpsData.updatedAt) {
+        if(gpsData.createdAt) {
             console.log("createdAt is in the data");
             gps.createdAt = gpsData.createdAt;
-            gps.updatedAt = gpsData.updatedAt;
         }
         console.log("gps before create: ", gps);
         data = await db.gpsData.create(gps);
