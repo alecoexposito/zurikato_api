@@ -7,6 +7,7 @@ const repository = {
         let gpsData = Data.gpsData;
         let deviceModel = Data.deviceModel;
         let data = null;
+        console.log("STORE COORDS: ", Data);
         if(deviceModel == 'MDVR') {
             data = await db.devices.findOne({ where: { mdvr_number: gpsData.idDevice } });
         } else {
