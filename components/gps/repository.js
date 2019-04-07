@@ -7,20 +7,25 @@ const repository = {
         let gpsData = Data.gpsData;
         let deviceModel = Data.deviceModel;
         let data = null;
+        let modelId = 2;
         console.log("STORE COORDS: ", Data);
+        if(deviceModel == 'MDVR')
+            modelId = 3;
+        else if(deviceModel == 'BB')
+            modelId = 1;
+
         if(deviceModel == 'MDVR') {
             data = await db.devices.findOne({ where: { mdvr_number: gpsData.idDevice } });
         } else {
             data = await db.devices.findOne({ where: { auth_device: gpsData.device_id } });
-            if (data == null) {
-                let modelId = 2;
-                if (deviceModel == 'BB') { modelId = 1; }
-                let device = { 'idDeviceModel': modelId, 'label': deviceModel, 'auth_device': gpsData.device_id };
-                console.log("CREANDO EL DEVICE: ", device);
-                data = await db.devices.create(device);
-                // await db.userDevices.create({ 'idUser': 2, 'idDevice': data.idDevice });
-            }
         }
+        if (data == null) {
+            let device = { 'idDeviceModel': modelId, 'label': deviceModel, 'auth_device': gpsData.device_id };
+            console.log("CREANDO EL DEVICE: ", device);
+            data = await db.devices.create(device);
+            // await db.userDevices.create({ 'idUser': 2, 'idDevice': data.idDevice });
+        }
+
         console.log("id from database: ", data.idDevice);
         let gps = { 'idDevice': data.idDevice, 'lat': gpsData.latitude, 'lng': gpsData.longitude, 'speed': gpsData.speed, 'orientation_plain': gpsData.orientation_plain, 'gps_status': gpsData.gps_status };
         console.log("gpsdata: ", gpsData);
