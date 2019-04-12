@@ -2,8 +2,6 @@ var db = require('../../lib/db/db');
 const repository = {
     storeCoords: async function(Data) {
         // console.log("en el store coords", Data);
-	    console.log(new Date());
-	    console.log(" --------------------- ");
         let gpsData = Data.gpsData;
         let deviceModel = Data.deviceModel;
         let data = null;
