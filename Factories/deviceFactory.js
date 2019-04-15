@@ -68,6 +68,13 @@ var deviceFactory = {
     getDevicesLastData: async function() {
         try {
             var data = await repository.devices.getDevicesLastData();
+            dataArray = [];
+            var result = { ArrayOfVehiclesOnlyGps_Result: dataArray};
+            data.forEach(function(value) {
+                dataArray.push({
+                    VehicleOnlyGps_Result: value
+                });
+            });
             return data;
         }catch(error){
             return false;
