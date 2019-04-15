@@ -75,7 +75,7 @@ var deviceFactory = {
                     VehicleOnlyGps_Result: value
                 });
             });
-            return data;
+            return result;
         }catch(error){
             return false;
         }
