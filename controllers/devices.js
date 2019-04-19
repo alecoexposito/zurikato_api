@@ -1,5 +1,4 @@
 var deviceFactory = require(__dirname + '/../Factories/deviceFactory');
-var request = require("request");
 var devices = {
 
     getAll: async function(req, res) {
@@ -105,7 +104,7 @@ var devices = {
             console.log("error llamando al getjsession", e);
         }
         var devices = deviceFactory.getDevicesLastData(jsession);
-
+        console.log("devices: ", devices);
         res.status(200);
         res.json(devices);
     }
