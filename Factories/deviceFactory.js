@@ -92,6 +92,7 @@ var deviceFactory = {
     getDevicesLastData: function(jsession) {
         try {
             var data = repository.devices.getDevicesLastData();
+            console.log("data del respository: ", data);
             dataArray = [];
             var result = { ArrayOfVehiclesOnlyGps_Result: dataArray};
             if(jsession != undefined) {
