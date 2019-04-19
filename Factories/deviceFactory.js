@@ -89,9 +89,9 @@ var deviceFactory = {
         });
     },
 
-    getDevicesLastData: function(jsession) {
+    getDevicesLastData: async function(jsession) {
         try {
-            var data = repository.devices.getDevicesLastData();
+            var data = await repository.devices.getDevicesLastData();
             console.log("data del respository: ", data);
             dataArray = [];
             var result = { ArrayOfVehiclesOnlyGps_Result: dataArray};
