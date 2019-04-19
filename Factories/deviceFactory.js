@@ -99,9 +99,9 @@ var deviceFactory = {
                 data.forEach(function(value) {
                     var param3 = jsession + ",3," + value.IMEI + ",0,1,0,0";
                     var param3Base64 = Buffer.from(param3).toString("base64");
-                    console.log("parametro en base64", param3Base64);
+                    console.log("value en el foreach", value);
 
-                    value.UrlCamera = "rtsp://209.126.127.171:6604/" + param3Base64;
+                    value.TextRow.UrlCamera = "rtsp://209.126.127.171:6604/" + param3Base64;
                     dataArray.push({
                         VehicleOnlyGps_Result: value
                     });
