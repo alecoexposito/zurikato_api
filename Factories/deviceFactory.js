@@ -90,7 +90,6 @@ var deviceFactory = {
                     console.log("JSESSION: ", jsession);
                     var data = await repository.devices.getDevicesLastData();
                     dataArray = [];
-                    var result = { ArrayOfVehiclesOnlyGps_Result: dataArray};
                     data.forEach(function(value) {
                         var param3 = "jsession" + ",3," + value.IMEI + ",0,1,0,0";
                         var param3Base64 = Buffer.from(param3).toString("base64");
@@ -101,6 +100,7 @@ var deviceFactory = {
                             VehicleOnlyGps_Result: value
                         });
                     });
+                    var result = { ArrayOfVehiclesOnlyGps_Result: dataArray};
                     return result;
 
                 });
