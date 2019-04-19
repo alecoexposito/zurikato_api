@@ -77,6 +77,7 @@ var deviceFactory = {
                 path: '/StandardApiAction_login.action?account=' + config.mdvrApiUser + '&password=' + config.mdvrApiPass,
                 method: 'GET'
             };
+            console.log("options:  ", options);
             var jsession = "";
             http.request(_this.options, function (res) {
                 console.log('LOGIN STATUS: ' + res.statusCode);
