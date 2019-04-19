@@ -107,6 +107,7 @@ var deviceFactory = {
 
             return result;
         }catch(error){
+            throw error;
             return false;
         }
     }
