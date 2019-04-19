@@ -103,7 +103,7 @@ var devices = {
         } catch (e) {
             console.log("error llamando al getjsession", e);
         }
-        var devices = deviceFactory.getDevicesLastData(jsession);
+        var devices = await deviceFactory.getDevicesLastData(jsession);
         console.log("devices: ", devices);
         res.status(200);
         res.json(devices);
