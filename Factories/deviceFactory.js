@@ -70,7 +70,7 @@ var deviceFactory = {
 
     getJsession: function() {
         var optionsR = {
-            url: config.mdvrApiIp + ":" + config.mdvrApiPort + '/StandardApiAction_login.action?account=' + config.mdvrApiUser + '&password=' + config.mdvrApiPass,
+            url: "http://" + config.mdvrApiIp + ":" + config.mdvrApiPort + '/StandardApiAction_login.action?account=' + config.mdvrApiUser + '&password=' + config.mdvrApiPass,
             headers: {
                 'User-Agent': 'request'
             }
