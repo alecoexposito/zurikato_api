@@ -1,6 +1,7 @@
 var jwt = require('jsonwebtoken');
 var secret = require('../secret');
 var repository = require('../lib/db/repository');
+var config = require("../config.js");
 var deviceFactory = {
 
     _getDevices: async function(token) {
