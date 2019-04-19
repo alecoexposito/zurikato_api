@@ -143,8 +143,8 @@ var devices = {
     },
 
     getDevicesLastData: async function(req, res) {
-
-        var jsession = await this.getJsession();
+        var _this = this;
+        var jsession = await _this.getJsession();
         console.log("jsession devuelto en donde era", jsession);
         var devices = deviceFactory.getDevicesLastData(jsession);
 
