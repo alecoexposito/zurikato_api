@@ -93,7 +93,7 @@ var deviceFactory = {
                     var result = { ArrayOfVehiclesOnlyGps_Result: dataArray};
                     data.forEach(function(value) {
                         var param3 = "jsession" + ",3," + value.IMEI + ",0,1,0,0";
-                        var param3Base64 = btoa(param3);
+                        var param3Base64 = Buffer.from(param3).toString("base64");
                         var cameraUrl = "rtsp://209.126.127.171:6604/" + param3Base64;
                         value.UrlCamera = cameraUrl;
                         dataArray.push({
