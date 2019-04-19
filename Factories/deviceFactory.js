@@ -100,12 +100,10 @@ var deviceFactory = {
                             VehicleOnlyGps_Result: value
                         });
                     });
+                    return result;
+
                 });
             }).end();
-
-
-
-            return result;
         }catch(error){
             throw error;
             return false;
