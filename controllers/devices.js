@@ -97,30 +97,9 @@ var devices = {
         res.json(true);
     },
 
-    getJsession: function() {
-        var optionsR = {
-            url: config.mdvrApiIp + ":" + config.mdvrApiPort + '/StandardApiAction_login.action?account=' + config.mdvrApiUser + '&password=' + config.mdvrApiPass,
-            headers: {
-                'User-Agent': 'request'
-            }
-        };
-
-        return new Promise((resolve, reject) => {
-            console.log("options:  ", optionsR);
-
-            request.get(optionsR, function(err, resp, body) {
-                if (err) {
-                    reject(err);
-                } else {
-                    resolve(body.jsession);
-                }
-            });
-        });
-    },
-
     getDevicesLastData: async function(req, res) {
         try {
-            var jsession = await getJsession();
+            var jsession = await deviceFactory.getJsession();
             console.log("jsession devuelto en donde era", jsession);
         } catch (e) {
             console.log("error llamando al getjsession", e);

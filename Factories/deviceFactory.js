@@ -65,9 +65,30 @@ var deviceFactory = {
         return deleted;
     },
 
-    getDevicesLastData: async function(jsession) {
+    getJsession: function() {
+        var optionsR = {
+            url: config.mdvrApiIp + ":" + config.mdvrApiPort + '/StandardApiAction_login.action?account=' + config.mdvrApiUser + '&password=' + config.mdvrApiPass,
+            headers: {
+                'User-Agent': 'request'
+            }
+        };
+
+        return new Promise((resolve, reject) => {
+            console.log("options:  ", optionsR);
+
+            request.get(optionsR, function(err, resp, body) {
+                if (err) {
+                    reject(err);
+                } else {
+                    resolve(body.jsession);
+                }
+            });
+        });
+    },
+
+    getDevicesLastData: function(jsession) {
         try {
-            var data = await repository.devices.getDevicesLastData();
+            var data = repository.devices.getDevicesLastData();
             dataArray = [];
             var result = { ArrayOfVehiclesOnlyGps_Result: dataArray};
             if(jsession != undefined) {
