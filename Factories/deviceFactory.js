@@ -1,9 +1,6 @@
 var jwt = require('jsonwebtoken');
 var secret = require('../secret');
 var repository = require('../lib/db/repository');
-var config = require('../config');
-var http = require('http');
-
 var deviceFactory = {
 
     _getDevices: async function(token) {
@@ -68,45 +65,23 @@ var deviceFactory = {
         return deleted;
     },
 
-    getDevicesLastData: async function() {
+    getDevicesLastData: async function(jsession) {
         try {
+            var data = await repository.devices.getDevicesLastData();
+            dataArray = [];
+            var result = { ArrayOfVehiclesOnlyGps_Result: dataArray};
+            data.forEach(function(value) {
+                var param3 = jsession + ",3," + value.IMEI + ",0,1,0,0";
+                var param3Base64 = Buffer.from(param3).toString("base64");
+                console.log("parametro en base64", param3Base64);
 
-            var options = {
-                hostname: config.mdvrApiIp,
-                port: config.mdvrApiPort,
-                path: '/StandardApiAction_login.action?account=' + config.mdvrApiUser + '&password=' + config.mdvrApiPass,
-                method: 'GET'
-            };
-            console.log("options:  ", options);
-            var jsession = "";
-            http.request(options, function (res) {
-                console.log('LOGIN STATUS: ' + res.statusCode);
-                // console.log('HEADERS: ' + JSON.stringify(res.headers));
-
-                res.setEncoding('utf8');
-                res.on('data', async function (data) {
-                    // console.log("first time data: ", data);
-                    jsession = JSON.parse(data).jsession;
-                    console.log("JSESSION: ", jsession);
-                    var data = await repository.devices.getDevicesLastData();
-                    dataArray = [];
-                    data.forEach(function(value) {
-                        var param3 = "jsession" + ",3," + value.IMEI + ",0,1,0,0";
-                        var param3Base64 = Buffer.from(param3).toString("base64");
-                        console.log("parametro en base64", param3Base64);
-                        var cameraUrl = "rtsp://209.126.127.171:6604/" + param3Base64;
-                        value.UrlCamera = cameraUrl;
-                        dataArray.push({
-                            VehicleOnlyGps_Result: value
-                        });
-                    });
-                    var result = { ArrayOfVehiclesOnlyGps_Result: dataArray};
-                    return result;
-
+                value.UrlCamera = "rtsp://209.126.127.171:6604/" + param3Base64;
+                dataArray.push({
+                    VehicleOnlyGps_Result: value
                 });
-            }).end();
+            });
+            return result;
         }catch(error){
-            throw error;
             return false;
         }
     }

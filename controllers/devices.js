@@ -1,4 +1,5 @@
 var deviceFactory = require(__dirname + '/../Factories/deviceFactory');
+var request = require("request");
 var devices = {
 
     getAll: async function(req, res) {
@@ -96,8 +97,57 @@ var devices = {
         res.json(true);
     },
 
+    getJsession: function() {
+        var options = {
+            hostname: config.mdvrApiIp,
+            port: config.mdvrApiPort,
+            path: '/StandardApiAction_login.action?account=' + config.mdvrApiUser + '&password=' + config.mdvrApiPass,
+            method: 'GET'
+        };
+
+        var optionsR = {
+            url: config.mdvrApiIp + ":" + config.mdvrApiPort + '/StandardApiAction_login.action?account=' + config.mdvrApiUser + '&password=' + config.mdvrApiPass,
+            headers: {
+                'User-Agent': 'request'
+            }
+        };
+
+        return new Promise((resolve, reject) => {
+            console.log("options:  ", options);
+
+            request.get(optionsR, function(err, resp, body) {
+                if (err) {
+                    reject(err);
+                } else {
+                    resolve(body.jsession);
+                }
+            })
+            // var jsession = "";
+            // http.request(options, function (res) {
+            //     console.log('LOGIN STATUS: ' + res.statusCode);
+            //     // console.log('HEADERS: ' + JSON.stringify(res.headers));
+            //
+            //     res.setEncoding('utf8');
+            //     res.on('data', function (data) {
+            //         // console.log("first time data: ", data);
+            //         jsession = JSON.parse(data).jsession;
+            //         console.log("JSESSION: ", jsession);
+            //         resolve(jsession);
+            //     });
+            // }).
+            // on("error", function(err) {
+            //     reject(err);
+            // }).
+            // end();
+        });
+    },
+
     getDevicesLastData: async function(req, res) {
-        var devices = await deviceFactory.getDevicesLastData();
+
+        var jsession = await this.getJsession();
+        console.log("jsession devuelto en donde era", jsession);
+        var devices = deviceFactory.getDevicesLastData(jsession);
+
         res.status(200);
         res.json(devices);
     }
