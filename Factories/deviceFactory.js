@@ -95,18 +95,18 @@ var deviceFactory = {
             console.log("data del respository: ", data);
             dataArray = [];
             var result = { ArrayOfVehiclesOnlyGps_Result: dataArray};
-            if(jsession != undefined) {
-                data.forEach(function(value) {
+            data.forEach(function(value) {
+                if(jsession != undefined) {
                     var param3 = jsession + ",3," + value.IMEI + ",0,1,0,0";
                     var param3Base64 = Buffer.from(param3).toString("base64");
-
                     value.UrlCamera = "rtsp://209.126.127.171:6604/" + param3Base64;
                     console.log("value en el foreach", value);
-                    dataArray.push({
-                        VehicleOnlyGps_Result: value
-                    });
+                }
+                dataArray.push({
+                    VehicleOnlyGps_Result: value
                 });
-            }
+            });
+            console.log("resultado a retornar: ", result);
             return result;
         }catch(error){
             console.log(error);
