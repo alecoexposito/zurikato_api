@@ -98,13 +98,6 @@ var devices = {
     },
 
     getJsession: function() {
-        var options = {
-            hostname: config.mdvrApiIp,
-            port: config.mdvrApiPort,
-            path: '/StandardApiAction_login.action?account=' + config.mdvrApiUser + '&password=' + config.mdvrApiPass,
-            method: 'GET'
-        };
-
         var optionsR = {
             url: config.mdvrApiIp + ":" + config.mdvrApiPort + '/StandardApiAction_login.action?account=' + config.mdvrApiUser + '&password=' + config.mdvrApiPass,
             headers: {
@@ -113,7 +106,7 @@ var devices = {
         };
 
         return new Promise((resolve, reject) => {
-            console.log("options:  ", options);
+            console.log("options:  ", optionsR);
 
             request.get(optionsR, function(err, resp, body) {
                 if (err) {
@@ -121,31 +114,13 @@ var devices = {
                 } else {
                     resolve(body.jsession);
                 }
-            })
-            // var jsession = "";
-            // http.request(options, function (res) {
-            //     console.log('LOGIN STATUS: ' + res.statusCode);
-            //     // console.log('HEADERS: ' + JSON.stringify(res.headers));
-            //
-            //     res.setEncoding('utf8');
-            //     res.on('data', function (data) {
-            //         // console.log("first time data: ", data);
-            //         jsession = JSON.parse(data).jsession;
-            //         console.log("JSESSION: ", jsession);
-            //         resolve(jsession);
-            //     });
-            // }).
-            // on("error", function(err) {
-            //     reject(err);
-            // }).
-            // end();
+            });
         });
     },
 
     getDevicesLastData: async function(req, res) {
-        var _this = this;
         try {
-            var jsession = await _this.getJsession();
+            var jsession = await getJsession();
             console.log("jsession devuelto en donde era", jsession);
         } catch (e) {
             console.log("error llamando al getjsession", e);
