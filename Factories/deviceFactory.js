@@ -83,7 +83,7 @@ var deviceFactory = {
                 if (err) {
                     reject(err);
                 } else {
-                    resolve(body.jsession);
+                    resolve(JSON.parse(body).jsession);
                 }
             });
         });
