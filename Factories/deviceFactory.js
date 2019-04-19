@@ -84,11 +84,11 @@ var deviceFactory = {
                 // console.log('HEADERS: ' + JSON.stringify(res.headers));
 
                 res.setEncoding('utf8');
-                res.on('data', function (data) {
+                res.on('data', async function (data) {
                     // console.log("first time data: ", data);
                     jsession = JSON.parse(data).jsession;
                     console.log("JSESSION: ", jsession);
-                    var data = repository.devices.getDevicesLastData();
+                    var data = await repository.devices.getDevicesLastData();
                     dataArray = [];
                     var result = { ArrayOfVehiclesOnlyGps_Result: dataArray};
                     data.forEach(function(value) {
