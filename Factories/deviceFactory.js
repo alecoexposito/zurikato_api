@@ -70,16 +70,18 @@ var deviceFactory = {
             var data = await repository.devices.getDevicesLastData();
             dataArray = [];
             var result = { ArrayOfVehiclesOnlyGps_Result: dataArray};
-            data.forEach(function(value) {
-                var param3 = jsession + ",3," + value.IMEI + ",0,1,0,0";
-                var param3Base64 = Buffer.from(param3).toString("base64");
-                console.log("parametro en base64", param3Base64);
+            if(jsession != undefined) {
+                data.forEach(function(value) {
+                    var param3 = jsession + ",3," + value.IMEI + ",0,1,0,0";
+                    var param3Base64 = Buffer.from(param3).toString("base64");
+                    console.log("parametro en base64", param3Base64);
 
-                value.UrlCamera = "rtsp://209.126.127.171:6604/" + param3Base64;
-                dataArray.push({
-                    VehicleOnlyGps_Result: value
+                    value.UrlCamera = "rtsp://209.126.127.171:6604/" + param3Base64;
+                    dataArray.push({
+                        VehicleOnlyGps_Result: value
+                    });
                 });
-            });
+            }
             return result;
         }catch(error){
             return false;
