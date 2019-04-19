@@ -79,7 +79,7 @@ var deviceFactory = {
             };
             console.log("options:  ", options);
             var jsession = "";
-            http.request(_this.options, function (res) {
+            http.request(options, function (res) {
                 console.log('LOGIN STATUS: ' + res.statusCode);
                 // console.log('HEADERS: ' + JSON.stringify(res.headers));
 
@@ -87,7 +87,7 @@ var deviceFactory = {
                 res.on('data', function (data) {
                     // console.log("first time data: ", data);
                     jsession = JSON.parse(data).jsession;
-                    console.log("JSESSION: ", _this.jsession);
+                    console.log("JSESSION: ", jsession);
                     var data = repository.devices.getDevicesLastData();
                     dataArray = [];
                     var result = { ArrayOfVehiclesOnlyGps_Result: dataArray};
