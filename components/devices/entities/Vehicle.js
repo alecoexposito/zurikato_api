@@ -13,7 +13,6 @@ module.exports = (sequelize, DataTypes)=>{
         year: { type: DataTypes.STRING},
         route: { type: DataTypes.STRING},
         odometer: { type: DataTypes.STRING},
-        model: { type: DataTypes.STRING},
     }, {freezeTableName: false});
     return vehicle;
 };
