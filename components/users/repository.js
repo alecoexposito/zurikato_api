@@ -51,10 +51,12 @@ const repository = {
                 model: db.devices,
                 where: { trashed: 0 },
                 include: [{
-                        model: db.deviceModel
-                    }, {
-                        model: db.gpsData,order: [['createdAt','DESC']],limit:1
-                    }
+                    model: db.deviceModel
+                }, {
+                    model: db.gpsData,order: [['createdAt','DESC']],limit:1
+                }, {
+                    model: db.vehicle
+                }
                 ]
             }]
             
