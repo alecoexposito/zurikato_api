@@ -65,6 +65,7 @@ const repository = {
         for(var i = 0; i < result.length; i++) {
             result[i].company_name = user.company_name;
         }
+        console.log("result:  ", result);
         return result;
          }catch(error){console.log(error);}
     },
