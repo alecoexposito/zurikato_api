@@ -99,6 +99,8 @@ var deviceFactory = {
                 if(jsession != undefined) {
                     var param3 = jsession + ",3," + value.IMEI + ",0,1,0,0";
                     var param3Base64 = Buffer.from(param3).toString("base64");
+                    value.Provider = config.Provider;
+                    value.IDCompany = config.IDCompany;
                     value.UrlCamera = "rtsp://209.126.127.171:6604/" + param3Base64;
                     console.log("value en el foreach", value);
                 }
