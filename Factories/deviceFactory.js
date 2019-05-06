@@ -104,9 +104,11 @@ var deviceFactory = {
 
                     var param3 = jsession + ",3," + value.IMEI + ",0,1,0,0";
                     var param3Base64 = Buffer.from(param3).toString("base64");
+
                     value.Provider = config.Provider;
                     value.IDCompany = config.IDCompany;
-                    value.UrlCamera = "rtsp://209.126.127.171:6604/" + param3Base64;
+                    // value.UrlCamera = "rtsp://209.126.127.171:6604/" + param3Base64;
+                    value.UrlCamera = "http://" + config.mdvrApiIp + ":" + config.mdvrApiPort + "/808gps/open/player/video.html?lang=en&devIdno=" + value.IMEI + "&jsession=" + jsession;
                     value.Date = moment(localDate).format('DD-MM-YYYY');
                     value.Time = moment(localDate).format('HH:mm:ss');
                     console.log("value en el foreach", value);
