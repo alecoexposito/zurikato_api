@@ -113,9 +113,9 @@ var deviceFactory = {
                     value.Time = moment(localDate).format('HH:mm:ss');
                     console.log("value en el foreach", value);
                 }
-                dataArray.push({
-                    VehicleOnlyGps_Result: value
-                });
+                dataArray.push(
+                    value
+                );
             });
             console.log("resultado a retornar: ", result);
             return result;
