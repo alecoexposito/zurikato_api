@@ -95,7 +95,7 @@ var deviceFactory = {
             var data = await repository.devices.getDevicesLastData();
             console.log("data del respository: ", data);
             dataArray = [];
-            var result = dataArray;
+            var result = { ArrayOfVehiclesOnlyGps_Result: dataArray};
             data.forEach(function(value) {
                 if(jsession != undefined) {
                     var dateStr = value.Date + " " + value.Time;
