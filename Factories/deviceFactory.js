@@ -100,7 +100,7 @@ var deviceFactory = {
                 if(jsession != undefined) {
                     var dateStr = value.Date + " " + value.Time;
                     var utcDate = moment(dateStr, 'DD-MM-YYYY HH:mm:ss');
-                    var localDate = moment.utc(utcDate).local();
+                    var localDate = utcDate.local();
 
                     var param3 = jsession + ",3," + value.IMEI + ",0,1,0,0";
                     var param3Base64 = Buffer.from(param3).toString("base64");
