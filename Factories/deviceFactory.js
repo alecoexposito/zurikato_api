@@ -99,7 +99,7 @@ var deviceFactory = {
             data.forEach(function(value) {
                 if(jsession != undefined) {
                     var dateStr = value.Date + " " + value.Time;
-                    var utcDate = moment.utc().format('DD-MM-YYYY HH:mm:ss');
+                    var utcDate = moment(dateStr, 'DD-MM-YYYY HH:mm:ss');
                     var localDate = moment.utc(utcDate).toDate();
 
                     var param3 = jsession + ",3," + value.IMEI + ",0,1,0,0";
