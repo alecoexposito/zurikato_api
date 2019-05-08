@@ -100,7 +100,7 @@ var deviceFactory = {
                 if(jsession != undefined) {
                     var dateStr = value.Date + " " + value.Time;
                     var utcDate = moment(dateStr, 'DD-MM-YYYY HH:mm:ss');
-                    var localDate = moment.utc(utcDate).toDate();
+                    var localDate = moment.utc(utcDate).local();
 
                     var param3 = jsession + ",3," + value.IMEI + ",0,1,0,0";
                     var param3Base64 = Buffer.from(param3).toString("base64");
@@ -109,8 +109,8 @@ var deviceFactory = {
                     value.IDCompany = config.IDCompany;
                     // value.UrlCamera = "rtsp://209.126.127.171:6604/" + param3Base64;
                     value.UrlCamera = "http://" + config.mdvrApiIp + ":" + config.mdvrApiPort + "/808gps/open/player/video.html?lang=en&devIdno=" + value.IMEI + "&jsession=" + jsession;
-                    value.Date = moment(localDate).format('DD-MM-YYYY');
-                    value.Time = moment(localDate).format('HH:mm:ss');
+                    value.Date = localDate.format('DD-MM-YYYY');
+                    value.Time = localDate.format('HH:mm:ss');
                     console.log("value en el foreach", value);
                 }
                 dataArray.push(
