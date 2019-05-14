@@ -7,7 +7,7 @@ const repository = {
         let data = null;
         let modelId = 2;
         let mdvrNumber = null;
-        console.log("STORE COORDS: ", Data);
+        // console.log("STORE COORDS: ", Data);
         if(deviceModel == 'MDVR') {
             modelId = 3;
             mdvrNumber = gpsData.idDevice;
