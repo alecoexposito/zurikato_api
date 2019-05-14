@@ -41,7 +41,7 @@ const repository = {
     },
     getDevices: async function(id) {
         console.log("---------------------- GET DEVICES -------------------------");
-         try{
+         try {
             var user = await db.users.findOne({
             where: {
                 $and: [
@@ -61,13 +61,15 @@ const repository = {
                 ]
             }]
             
-        });
-        var result = user.devices;
-        for(var i = 0; i < result.length; i++) {
-            result[i].company_name = user.company_name;
-        }
-        console.log("result:  ", result);
-        return result;
+            });
+            console.log("------------- ANTES DE PEDIR LOS DISPOSITIVOS -------------------------");
+            var result = user.devices;
+            console.log("-------------- DESPUES DE PEDIR LOS DISPOSITIVOS ----------------------");
+            for(var i = 0; i < result.length; i++) {
+                result[i].company_name = user.company_name;
+            }
+            console.log("result:  ", result);
+            return result;
          }catch(error){console.log(error);}
     },
 
