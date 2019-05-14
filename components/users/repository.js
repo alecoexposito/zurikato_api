@@ -54,6 +54,8 @@ const repository = {
                 model: db.gpsData,order: [['createdAt','DESC']],limit:1
             }, {
                 model: db.vehicle
+            }, {
+                model: db.users
             }]
             
             });
@@ -61,7 +63,7 @@ const repository = {
             var result = devices;
             console.log("-------------- DESPUES DE PEDIR LOS DISPOSITIVOS ----------------------");
             for(var i = 0; i < result.length; i++) {
-                result[i].company_name = user.company_name;
+                result[i].company_name = result[i].user.company_name;
             }
             console.log("result:  ", result);
             return result;
