@@ -138,7 +138,7 @@ const repository = {
                         }
                     },
                 };
-                result = result.users.company_name;
+                result.company_name = result.users.company_name;
                 results.push(result);
                 // result[i].company_name = result[i].users.company_name;
             }
