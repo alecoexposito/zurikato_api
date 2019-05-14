@@ -65,7 +65,7 @@ const repository = {
             console.log("------------- ANTES DE PEDIR LOS DISPOSITIVOS -------------------------");
             var results = [];
             var devices = devicesResult[0];
-            console.log("devices: ", devices);
+            // console.log("devices: ", devices);
             console.log("-------------- DESPUES DE PEDIR LOS DISPOSITIVOS ----------------------");
             for(var i = 0; i < devices.length; i++) {
                 var result = {
