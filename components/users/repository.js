@@ -40,6 +40,7 @@ const repository = {
         return user;
     },
     getDevices: async function(id) {
+        console.log("---------------------- GET DEVICES -------------------------");
          try{
             var user = await db.users.findOne({
             where: {
