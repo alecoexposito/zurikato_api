@@ -42,28 +42,23 @@ const repository = {
     getDevices: async function(id) {
         console.log("---------------------- GET DEVICES -------------------------");
          try {
-            var user = await db.users.findOne({
+            var devices = await db.devices.findAll({
             where: {
                 $and: [
-                    { idUser: id },
+                    { user_id: id },
                 ]
             },
             include: [{
-                model: db.devices,
-                where: { trashed: 0 },
-                include: [{
-                    model: db.deviceModel
-                }, {
-                    model: db.gpsData,order: [['createdAt','DESC']],limit:1
-                }, {
-                    model: db.vehicle
-                }
-                ]
+                model: db.deviceModel
+            }, {
+                model: db.gpsData,order: [['createdAt','DESC']],limit:1
+            }, {
+                model: db.vehicle
             }]
             
             });
             console.log("------------- ANTES DE PEDIR LOS DISPOSITIVOS -------------------------");
-            var result = user.devices;
+            var result = devices;
             console.log("-------------- DESPUES DE PEDIR LOS DISPOSITIVOS ----------------------");
             for(var i = 0; i < result.length; i++) {
                 result[i].company_name = user.company_name;
