@@ -34,6 +34,7 @@ var middleware = {
     devices: async function(req, res) {
         var id = req.params.id;
         var devices = await factory._getDevices(id);
+        console.log("------------------------------- en el middleware ----------------------------------------", devices);
         res.json(devices);
     },
 
