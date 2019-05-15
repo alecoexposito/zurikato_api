@@ -11,6 +11,7 @@ var factory = {
         let devices = [];
         try {
             devices = await repository.getDevices(id);
+            console.log("---------------------------- devices en el factory ----------------------------------------", devices);
 
         } catch (error) {
             devices = [];
