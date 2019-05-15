@@ -142,16 +142,16 @@ const repository = {
                         }
                     },
                     peripheral_gps_data: [{
-                        idPeripheralGps: devices[i]['peripheral_gps_data.updatedAt'],
-                        idDevice: devices[i]['peripheral_gps_data.updatedAt'],
-                        lat: devices[i]['peripheral_gps_data.updatedAt'],
-                        lng: devices[i]['peripheral_gps_data.updatedAt'],
-                        speed: devices[i]['peripheral_gps_data.updatedAt'],
-                        orientation_plain: devices[i]['peripheral_gps_data.updatedAt'],
-                        vDate: devices[i]['peripheral_gps_data.updatedAt'],
-                        uuid: devices[i]['peripheral_gps_data.updatedAt'],
-                        gps_status: devices[i]['peripheral_gps_data.updatedAt'],
-                        createdAt: devices[i]['peripheral_gps_data.updatedAt'],
+                        idPeripheralGps: devices[i]['peripheral_gps_data.idPeripheralGps'],
+                        idDevice: devices[i]['peripheral_gps_data.idDevice'],
+                        lat: devices[i]['peripheral_gps_data.lat'],
+                        lng: devices[i]['peripheral_gps_data.lng'],
+                        speed: devices[i]['peripheral_gps_data.speed'],
+                        orientation_plain: devices[i]['peripheral_gps_data.orientation_plain'],
+                        vDate: devices[i]['peripheral_gps_data.vDate'],
+                        uuid: devices[i]['peripheral_gps_data.uuid'],
+                        gps_status: devices[i]['peripheral_gps_data.gps_status'],
+                        createdAt: devices[i]['peripheral_gps_data.createdAt'],
                         updatedAt: devices[i]['peripheral_gps_data.updatedAt']
                     }]
                 };
