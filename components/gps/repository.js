@@ -39,6 +39,7 @@ const repository = {
         data = await db.gpsData.create(gps);
 
         // let queryDelete = "delete from peripheral_gps_data_last where idDevice = " + data.idDevice;
+        console.log("voy a updatear");
         let queryUpdate = "update peripheral_gps_data_last set " +
             "lat = " + gps.lat + ", " +
             "lng = " + gps.lng + ", " +
