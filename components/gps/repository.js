@@ -39,12 +39,12 @@ const repository = {
 
         // let queryDelete = "delete from peripheral_gps_data_last where idDevice = " + data.idDevice;
         let queryDelete = "update peripheral_gps_data_last set " +
-            "lat = " + gps.lat + ", "
-            "lng = " + gps.lng + ", "
-            "speed = " + gps.speed + ", "
-            "orientation_plain = " + gps.orientation_plain + ", "
-            "gps_status = " + gps.gps_status + ", "
-            "updatedAt = " + gps.createdAt + ", "
+            "lat = " + gps.lat + ", " +
+            "lng = " + gps.lng + ", " +
+            "speed = " + gps.speed + ", " +
+            "orientation_plain = " + gps.orientation_plain + ", " +
+            "gps_status = " + gps.gps_status + ", " +
+            "updatedAt = " + gps.createdAt + ", " +
             "where idDevice = " + gps.idDevice
         ;
         let result = await db.sequelize.query(queryDelete);
