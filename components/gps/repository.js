@@ -49,7 +49,8 @@ const repository = {
             "where idDevice = " + gps.idDevice
         ;
         let result = await db.sequelize.query(queryDelete);
-        console.log("resultado del update: ", result);
+
+        console.log("Filas afectadas: ", result[0].affectedRows);
         // let queryUpdate = "insert into peripheral_gps_data_last (select * from peripheral_gps_data where idDevice = " + data.idDevice + " order by idPeripheralGps desc limit 1)";
         // result = await db.sequelize.query(queryUpdate);
 
