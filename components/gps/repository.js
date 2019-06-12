@@ -39,7 +39,7 @@ const repository = {
         data = await db.gpsData.create(gps);
 
         // let queryDelete = "delete from peripheral_gps_data_last where idDevice = " + data.idDevice;
-        let queryDelete = "update peripheral_gps_data_last set " +
+        let queryUpdate = "update peripheral_gps_data_last set " +
             "lat = " + gps.lat + ", " +
             "lng = " + gps.lng + ", " +
             "speed = " + gps.speed + ", " +
@@ -48,11 +48,14 @@ const repository = {
             "updatedAt = \'" + moment(data.createdAt).utc().format('YYYY-MM-DD HH:mm:ss') + "\' " +
             "where idDevice = " + gps.idDevice
         ;
-        let result = await db.sequelize.query(queryDelete);
+        let result = await db.sequelize.query(queryUpdate);
 
         console.log("Filas afectadas: ", result[0].affectedRows);
-        // let queryUpdate = "insert into peripheral_gps_data_last (select * from peripheral_gps_data where idDevice = " + data.idDevice + " order by idPeripheralGps desc limit 1)";
-        // result = await db.sequelize.query(queryUpdate);
+        let affectedRows = result[0].affectedRows;
+        if(affectedRows < 0) {
+            let queryInsert = "insert into peripheral_gps_data_last (select * from peripheral_gps_data where idDevice = " + data.idDevice + " order by idPeripheralGps desc limit 1)";
+            result = await db.sequelize.query(queryInsert);
+        }
 
 
 
