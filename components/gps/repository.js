@@ -44,7 +44,7 @@ const repository = {
             "speed = " + gps.speed + ", " +
             "orientation_plain = " + gps.orientation_plain + ", " +
             "gps_status = " + gps.gps_status + ", " +
-            "updatedAt = " + gps.createdAt + ", " +
+            "updatedAt = " + data.createdAt + " " +
             "where idDevice = " + gps.idDevice
         ;
         let result = await db.sequelize.query(queryDelete);
