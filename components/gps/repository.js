@@ -36,6 +36,14 @@ const repository = {
         }
         // console.log("gps before create: ", gps);
         data = await db.gpsData.create(gps);
+
+        let queryDelete = "delete from peripheral_gps_data_last where idDevice = " + data.idDevice;
+        let result = await db.sequelize.query(queryDelete);
+        let queryUpdate = "insert intno peripheral_gps_data_last (select * from peripheral_gps_data where idDevice = " + data.idDevice + ")";
+        result = await db.sequelize.query(queryUpdate);
+
+
+
     }
 };
 module.exports = repository;
