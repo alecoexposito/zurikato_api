@@ -52,7 +52,7 @@ const repository = {
 
         console.log("Filas afectadas: ", result[0].affectedRows);
         let affectedRows = result[0].affectedRows;
-        if(affectedRows < 0) {
+        if(affectedRows < 1) {
             let queryInsert = "insert into peripheral_gps_data_last (select * from peripheral_gps_data where idDevice = " + data.idDevice + " order by idPeripheralGps desc limit 1)";
             result = await db.sequelize.query(queryInsert);
         }
