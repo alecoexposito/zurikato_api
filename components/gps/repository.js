@@ -39,7 +39,7 @@ const repository = {
 
         let queryDelete = "delete from peripheral_gps_data_last where idDevice = " + data.idDevice;
         let result = await db.sequelize.query(queryDelete);
-        let queryUpdate = "insert intno peripheral_gps_data_last (select * from peripheral_gps_data where idDevice = " + data.idDevice + ")";
+        let queryUpdate = "insert into peripheral_gps_data_last (select * from peripheral_gps_data where idDevice = " + data.idDevice + " order by idPeripheralGps desc limit 1)";
         result = await db.sequelize.query(queryUpdate);
 
 
