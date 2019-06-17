@@ -114,7 +114,7 @@ var deviceFactory = {
                     value.Time = utcDate.local().format('HH:mm:ss');
                     console.log("value en el foreach", value);
                 } else {
-                    value.UrlCamera = "http://127.0.0.1:8000/#!/sharedvideo/" + idDevice;
+                    value.UrlCamera = "http://69.64.32.172:8000/#!/sharedvideo/" + idDevice;
                 }
                 delete value.idDevice;
                 dataArray.push(
