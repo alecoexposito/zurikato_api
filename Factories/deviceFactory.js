@@ -127,7 +127,7 @@ var deviceFactory = {
             console.log(error);
             return false;
         }
-    }
+    },
 
     saveSemovLog: function(json_data) {
         repository.devices.saveSemovLog(json_data);
