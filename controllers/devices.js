@@ -104,10 +104,10 @@ var devices = {
             console.log("error llamando al getjsession", e);
         }
         var devices = await deviceFactory.getDevicesLastData(jsession);
-        console.log("devices: ", devices);
-        res.status(200);
-        console.log("GOING TO SAVE ON SEMOV LOG");
+        // console.log("devices: ", devices);
+        console.log("-------------------------- GOING TO SAVE ON SEMOV LOG ---------------------------- ");
         deviceFactory.saveSemovLog(JSON.stringify(devices));
+        res.status(200);
         res.json(devices);
     }
 };
