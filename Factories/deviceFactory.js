@@ -114,7 +114,11 @@ var deviceFactory = {
                     value.Time = utcDate.local().format('HH:mm:ss');
                     console.log("value en el foreach", value);
                 } else {
+                    value.Provider = config.Provider;
+                    value.IDCompany = config.IDCompany;
                     value.UrlCamera = config.urlCamera + idDevice;
+                    value.Date = utcDate.local().format('DD/MM/YYYY');
+                    value.Time = utcDate.local().format('HH:mm:ss');
                 }
                 delete value.idDevice;
                 dataArray.push(
