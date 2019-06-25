@@ -128,6 +128,10 @@ var deviceFactory = {
             return false;
         }
     }
+
+    saveSemovLog: function(json_data) {
+        repository.devices.saveSemovLog(json_data);
+    }
 };
 
 module.exports = deviceFactory;
