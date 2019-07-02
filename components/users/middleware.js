@@ -33,8 +33,8 @@ var middleware = {
 
     devices: async function(req, res) {
         var id = req.params.id;
-        var devices = await factory._getDevices(id);
-        console.log("------------------------------- en el middleware ----------------------------------------", devices);
+        var isAdmin = req.params.isAdmin;
+        var devices = await factory._getDevices(id, isAdmin);
         res.json(devices);
     },
 
