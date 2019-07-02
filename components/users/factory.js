@@ -17,10 +17,10 @@ var factory = {
         return devices;
     },
 
-    _getGroups: async function(id) {
+    _getGroups: async function(id, isAdmin) {
         let groups = [];
         try {
-            groups = await repository.getGroups(id);
+            groups = await repository.getGroups(id, isAdmin);
 
         } catch (error) {
             groups = [];

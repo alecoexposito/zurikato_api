@@ -158,14 +158,27 @@ const repository = {
          }catch(error){console.log(error);}
     },
 
-    getGroups: async function(id) {
-        // let query = "SELECT `peripheral_gps_data`.`lat`,`peripheral_gps_data`.`lng`,`peripheral_gps_data`.`createdAt` FROM `peripheral_gps_data` AS `peripheral_gps_data` INNER JOIN `devices` AS `device` ON `peripheral_gps_data`.`idDevice` = `device`.`idDevice` WHERE date_format(`peripheral_gps_data`.`createdAt`, '%Y-%m-%d')=date_format('" + date + "', '%Y-%m-%d')AND `peripheral_gps_data`.`idDevice`=" + id + " order by `peripheral_gps_data`.`createdAt` ASC;";
-        let query = "select distinct dgroup.id as group_id, dgroup.label as group_label, devices.label as device_label, devices.idDevice as device_id, devices.auth_device as auth_device" +
-            " from dgroup " +
-            "inner join device_group on group_id = dgroup.id " +
-            "right join devices on devices.idDevice = device_group.device_id " +
-            "inner join peripheral_gps_data on devices.idDevice = peripheral_gps_data.idDevice " +
-            "where (dgroup.user_id = " + id + " or dgroup.id is null) and devices.user_id = " + id  + " and (devices.trashed is null or devices.trashed = 0)";
+    getGroups: async function(id, isAdmin) {
+
+        let query = "";
+
+        if(isAdmin == true || isAdmin == "true") {
+            query = "select distinct users.idUser as group_id, users.username as group_label, " +
+                "devices.label as device_label, devices.idDevice as device_id, devices.auth_device as auth_device" +
+                " from users " +
+                "right join devices on devices.user_id = users.idUser " +
+                "where devices.trashed is null or devices.trashed = 0";
+        } else {
+            query = "select distinct dgroup.id as group_id, dgroup.label as group_label, " +
+                "devices.label as device_label, devices.idDevice as device_id, devices.auth_device as auth_device" +
+                " from dgroup " +
+                "inner join device_group on group_id = dgroup.id " +
+                "right join devices on devices.idDevice = device_group.device_id " +
+                "inner join peripheral_gps_data on devices.idDevice = peripheral_gps_data.idDevice " +
+                "where (dgroup.user_id = " + id + " or dgroup.id is null) and devices.user_id = " + id  + " and (devices.trashed is null or devices.trashed = 0)";
+        }
+
+
         let data = await db.sequelize.query(query);
         return data[0];
     },
