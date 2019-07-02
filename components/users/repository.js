@@ -40,7 +40,7 @@ const repository = {
         return user;
     },
     getDevices: async function(id, isAdmin = false) {
-        console.log("---------------------- GET DEVICES -------------------------");
+        console.log("---------------------- GET DEVICES ------------------------- isAdmin: ", isAdmin);
          try {
              var query = "";
             if(isAdmin === true) {
