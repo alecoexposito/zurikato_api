@@ -164,17 +164,19 @@ const repository = {
 
         if(isAdmin == true || isAdmin == "true") {
             query = "select distinct users.idUser as group_id, users.username as group_label, " +
-                "devices.label as device_label, devices.idDevice as device_id, devices.auth_device as auth_device" +
+                "devices.label as device_label, devices.idDevice as device_id, devices.auth_device as auth_device, device_models.label as device_model" +
                 " from users " +
                 "right join devices on devices.user_id = users.idUser " +
+                "inner join device_models on devices.idDeviceModel = device_models.idDeviceModel " +
                 "where devices.trashed is null or devices.trashed = 0";
         } else {
             query = "select distinct dgroup.id as group_id, dgroup.label as group_label, " +
-                "devices.label as device_label, devices.idDevice as device_id, devices.auth_device as auth_device" +
+                "devices.label as device_label, devices.idDevice as device_id, devices.auth_device as auth_device, device_models.label as device_model" +
                 " from dgroup " +
                 "inner join device_group on group_id = dgroup.id " +
                 "right join devices on devices.idDevice = device_group.device_id " +
                 "inner join peripheral_gps_data on devices.idDevice = peripheral_gps_data.idDevice " +
+                "inner join device_models on devices.idDeviceModel = device_models.idDeviceModel " +
                 "where (dgroup.user_id = " + id + " or dgroup.id is null) and devices.user_id = " + id  + " and (devices.trashed is null or devices.trashed = 0)";
         }
 
