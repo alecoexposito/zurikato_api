@@ -11,6 +11,7 @@ router.post('/register', auth.register);
 router.get('/profile/:id', auth.profile);
 
 router.get('/gov/vehicles-only-gps', devices.getDevicesLastData);
+router.get('/mdvr/video-url/:imei', devices.getVideoUrl);
 router.get('/shared-screen/:id', shared.getSharedScreen);
 router.post('/save-share', shared.saveShared);
 // router.post('/resend', admin.resend)

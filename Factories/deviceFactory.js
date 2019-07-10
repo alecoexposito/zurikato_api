@@ -112,7 +112,6 @@ var deviceFactory = {
                     value.UrlCamera = "http://" + config.mdvrApiIp + ":" + config.mdvrApiPort + "/808gps/open/player/video.html?lang=en&devIdno=" + value.IMEI + "&jsession=" + jsession;
                     value.Date = utcDate.local().format('DD/MM/YYYY');
                     value.Time = utcDate.local().format('HH:mm:ss');
-                    console.log("value en el foreach", value);
                 } else {
                     value.Provider = config.Provider;
                     value.IDCompany = config.IDCompany;

@@ -1,4 +1,6 @@
 var deviceFactory = require(__dirname + '/../Factories/deviceFactory');
+var config = require("../config.js");
+
 var devices = {
 
     getAll: async function(req, res) {
@@ -109,6 +111,19 @@ var devices = {
         deviceFactory.saveSemovLog(JSON.stringify(devices));
         res.status(200);
         res.json(devices);
+    },
+
+    getVideoUrl: async function(req, res) {
+        try {
+            var jsession = await deviceFactory.getJsession();
+            var imei = req.params.imei;
+            var urlCamera = "http://" + config.mdvrApiIp + ":" + config.mdvrApiPort + "/808gps/open/player/video.html?lang=en&devIdno=" + imei + "&jsession=" + jsession;
+        } catch (e) {
+            res.status(200);
+            res.json({success: false});
+        }
+        res.status(200);
+        res.json({ success: true, url: urlCamera });
     }
 };
 
