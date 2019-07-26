@@ -67,15 +67,13 @@ const repository = {
             var lastId = 0;
             for(var i = 0; i < devices.length; i++) {
                 if(devices[i].idDevice == lastId) {
-                    if(results[results.length - 1].cameras.push({
+                    results[results.length - 1].cameras.push({
                         url_camera: devices[i].url_camera,
                         name: devices[i].camera_name
-                    }));
-                } else {
+                    });
                     lastId = devices[i].idDevice;
                     continue;
                 }
-
                 lastId = devices[i].idDevice;
                 var result = {
                     idDevice: devices[i].idDevice,
