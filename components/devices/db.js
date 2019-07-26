@@ -9,6 +9,7 @@ db.sequelize = sequelize;
 db.devices = require('./entities/Device')(sequelize, Sequelize);
 db.deviceModel = require('./entities/DeviceModel.js')(sequelize, Sequelize);
 db.vehicle = require('./entities/Vehicle.js')(sequelize, Sequelize);
+db.vehicle = require('./entities/Camera.js')(sequelize, Sequelize);
 
 db.devices.belongsTo(db.deviceModel, { foreignKey: 'idDeviceModel' });
 db.deviceModel.hasMany(db.devices, { foreignKey: 'idDeviceModel' });
@@ -22,5 +23,9 @@ db.devices.belongsToMany(user, {
     foreignKey: 'idDevice',
     constraints: false
 });
+
+db.camera.belongsTo(db.devices, { foreignKey: 'device_id' });
+db.devices.hasMany(db.camera, { foreignKey: 'device_id' });
+
 
 module.exports = db;
