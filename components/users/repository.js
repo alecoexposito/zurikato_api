@@ -63,98 +63,98 @@ const repository = {
             var devices = devicesResult[0];
             // console.log("devices: ", devices);
             console.log("-------------- DESPUES DE PEDIR LOS DISPOSITIVOS ----------------------");
-            for(var i = 0; i < devices.length; i++) {
-                var result = {
-                    idDevice: devices[i].idDevice,
-                    auth_device: devices[i].auth_device,
-                    idDeviceModel: devices[i].idDeviceModel,
-                    label: devices[i].label,
-                    sim: devices[i].sim,
-                    autoSync: devices[i].autoSync,
-                    license_plate: devices[i].license_plate,
-                    contact: devices[i].contact,
-                    remark: devices[i].remark,
-                    activation_date: devices[i].activation_date,
-                    expiration_date: devices[i].expiration_date,
-                    panic_button: devices[i].panic_button,
-                    trashed: devices[i].trashed,
-                    mdvr_number: devices[i].mdvr_number,
-                    createdAt: devices[i].createdAt,
-                    updatedAt: devices[i].updatedAt,
-                    device_model: {
-                        idDeviceModel: devices[i]['device_model.idDeviceModel'],
-                        label: devices[i]['device_model.label'],
-                        peripheral_gps: devices[i]['device_model.peripheral_gps'],
-                        peripheral_ticketsseller: devices[i]['device_model.peripheral_ticketsseller'],
-                        peripheral_cam1: devices[i]['device_model.peripheral_cam1'],
-                        peripheral_cam2: devices[i]['device_model.peripheral_cam2'],
-                        peripheral_cam3: devices[i]['device_model.peripheral_cam3'],
-                        peripheral_cam4: devices[i]['device_model.peripheral_cam4'],
-                        createdAt: devices[i]['device_model.createdAt'],
-                        updatedAt: devices[i]['device_model.updatedAt'],
-                    },
-                    vehicle: {
-                        id: devices[i]['vehicle.id'],
-                        device_id: devices[i]['vehicle.device_id'],
-                        client_id: devices[i]['vehicle.client_id'],
-                        name: devices[i]['vehicle.name'],
-                        plate_number: devices[i]['vehicle.plate_number'],
-                        brand: devices[i]['vehicle.brand'],
-                        model: devices[i]['vehicle.model'],
-                        type: devices[i]['vehicle.type'],
-                        year: devices[i]['vehicle.year'],
-                        route: devices[i]['vehicle.route'],
-                        odometer: devices[i]['vehicle.odometer'],
-                        createdAt: devices[i]['vehicle.createdAt'],
-                        updatedAt: devices[i]['vehicle.updatedAt'],
-                    },
-                    users: {
-                        idUser: devices[i]['users.idUser'],
-                        email: devices[i]['users.email'],
-                        label: devices[i]['users.label'],
-                        telephone: devices[i]['users.telephone'],
-                        pass: devices[i]['users.pass'],
-                        salt: devices[i]['users.salt'],
-                        userType: devices[i]['users.userType'],
-                        parent: devices[i]['users.parent'],
-                        active: devices[i]['users.active'],
-                        auth_token: devices[i]['users.auth_token'],
-                        token: devices[i]['users.token'],
-                        username: devices[i]['users.username'],
-                        automatic_imeis: devices[i]['users.automatic_imeis'],
-                        company_name: devices[i]['users.company_name'],
-                        fences: devices[i]['users.fences'],
-                        createdAt: devices[i]['users.createdAt'],
-                        updatedAt: devices[i]['users.updatedAt'],
-                        user_devices: {
-                            idUserDevice: devices[i]['users.user_devices.idUserDevice'],
-                            idUser: devices[i]['users.user_devices.idUser'],
-                            idDevice: devices[i]['users.user_devices.idDevice'],
-                            label: devices[i]['users.user_devices.label'],
-                            createdAt: devices[i]['users.user_devices.createdAt'],
-                            updatedAt: devices[i]['users.user_devices.updatedAt'],
-                        }
-                    },
-                    peripheral_gps_data: [{
-                        idPeripheralGps: devices[i]['peripheral_gps_data.idPeripheralGps'],
-                        idDevice: devices[i]['peripheral_gps_data.idDevice'],
-                        lat: devices[i]['peripheral_gps_data.lat'],
-                        lng: devices[i]['peripheral_gps_data.lng'],
-                        speed: devices[i]['peripheral_gps_data.speed'],
-                        orientation_plain: devices[i]['peripheral_gps_data.orientation_plain'],
-                        vDate: devices[i]['peripheral_gps_data.vDate'],
-                        uuid: devices[i]['peripheral_gps_data.uuid'],
-                        gps_status: devices[i]['peripheral_gps_data.gps_status'],
-                        createdAt: devices[i]['peripheral_gps_data.createdAt'],
-                        updatedAt: devices[i]['peripheral_gps_data.updatedAt']
-                    }]
-                };
-                result.company_name = result.users.company_name;
-                results.push(result);
-                // result[i].company_name = result[i].users.company_name;
-            }
-            console.log("result:  ", results);
-            return results;
+            // for(var i = 0; i < devices.length; i++) {
+            //     var result = {
+            //         idDevice: devices[i].idDevice,
+            //         auth_device: devices[i].auth_device,
+            //         idDeviceModel: devices[i].idDeviceModel,
+            //         label: devices[i].label,
+            //         sim: devices[i].sim,
+            //         autoSync: devices[i].autoSync,
+            //         license_plate: devices[i].license_plate,
+            //         contact: devices[i].contact,
+            //         remark: devices[i].remark,
+            //         activation_date: devices[i].activation_date,
+            //         expiration_date: devices[i].expiration_date,
+            //         panic_button: devices[i].panic_button,
+            //         trashed: devices[i].trashed,
+            //         mdvr_number: devices[i].mdvr_number,
+            //         createdAt: devices[i].createdAt,
+            //         updatedAt: devices[i].updatedAt,
+            //         device_model: {
+            //             idDeviceModel: devices[i]['device_model.idDeviceModel'],
+            //             label: devices[i]['device_model.label'],
+            //             peripheral_gps: devices[i]['device_model.peripheral_gps'],
+            //             peripheral_ticketsseller: devices[i]['device_model.peripheral_ticketsseller'],
+            //             peripheral_cam1: devices[i]['device_model.peripheral_cam1'],
+            //             peripheral_cam2: devices[i]['device_model.peripheral_cam2'],
+            //             peripheral_cam3: devices[i]['device_model.peripheral_cam3'],
+            //             peripheral_cam4: devices[i]['device_model.peripheral_cam4'],
+            //             createdAt: devices[i]['device_model.createdAt'],
+            //             updatedAt: devices[i]['device_model.updatedAt'],
+            //         },
+            //         vehicle: {
+            //             id: devices[i]['vehicle.id'],
+            //             device_id: devices[i]['vehicle.device_id'],
+            //             client_id: devices[i]['vehicle.client_id'],
+            //             name: devices[i]['vehicle.name'],
+            //             plate_number: devices[i]['vehicle.plate_number'],
+            //             brand: devices[i]['vehicle.brand'],
+            //             model: devices[i]['vehicle.model'],
+            //             type: devices[i]['vehicle.type'],
+            //             year: devices[i]['vehicle.year'],
+            //             route: devices[i]['vehicle.route'],
+            //             odometer: devices[i]['vehicle.odometer'],
+            //             createdAt: devices[i]['vehicle.createdAt'],
+            //             updatedAt: devices[i]['vehicle.updatedAt'],
+            //         },
+            //         users: {
+            //             idUser: devices[i]['users.idUser'],
+            //             email: devices[i]['users.email'],
+            //             label: devices[i]['users.label'],
+            //             telephone: devices[i]['users.telephone'],
+            //             pass: devices[i]['users.pass'],
+            //             salt: devices[i]['users.salt'],
+            //             userType: devices[i]['users.userType'],
+            //             parent: devices[i]['users.parent'],
+            //             active: devices[i]['users.active'],
+            //             auth_token: devices[i]['users.auth_token'],
+            //             token: devices[i]['users.token'],
+            //             username: devices[i]['users.username'],
+            //             automatic_imeis: devices[i]['users.automatic_imeis'],
+            //             company_name: devices[i]['users.company_name'],
+            //             fences: devices[i]['users.fences'],
+            //             createdAt: devices[i]['users.createdAt'],
+            //             updatedAt: devices[i]['users.updatedAt'],
+            //             user_devices: {
+            //                 idUserDevice: devices[i]['users.user_devices.idUserDevice'],
+            //                 idUser: devices[i]['users.user_devices.idUser'],
+            //                 idDevice: devices[i]['users.user_devices.idDevice'],
+            //                 label: devices[i]['users.user_devices.label'],
+            //                 createdAt: devices[i]['users.user_devices.createdAt'],
+            //                 updatedAt: devices[i]['users.user_devices.updatedAt'],
+            //             }
+            //         },
+            //         peripheral_gps_data: [{
+            //             idPeripheralGps: devices[i]['peripheral_gps_data.idPeripheralGps'],
+            //             idDevice: devices[i]['peripheral_gps_data.idDevice'],
+            //             lat: devices[i]['peripheral_gps_data.lat'],
+            //             lng: devices[i]['peripheral_gps_data.lng'],
+            //             speed: devices[i]['peripheral_gps_data.speed'],
+            //             orientation_plain: devices[i]['peripheral_gps_data.orientation_plain'],
+            //             vDate: devices[i]['peripheral_gps_data.vDate'],
+            //             uuid: devices[i]['peripheral_gps_data.uuid'],
+            //             gps_status: devices[i]['peripheral_gps_data.gps_status'],
+            //             createdAt: devices[i]['peripheral_gps_data.createdAt'],
+            //             updatedAt: devices[i]['peripheral_gps_data.updatedAt']
+            //         }]
+            //     };
+            //     result.company_name = result.users.company_name;
+            //     results.push(result);
+            //     // result[i].company_name = result[i].users.company_name;
+            // }
+            // console.log("result:  ", results);
+            return devices;
          }catch(error){console.log(error);}
     },
 
