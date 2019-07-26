@@ -161,7 +161,7 @@ const repository = {
                     }],
                     cameras: []
                 };
-                if(devices[i].url_camera != null && devices[i].url_camera.startsWith("rtps")) {
+                if(devices[i].url_camera != null && devices[i].url_camera.startsWith("rtsp")) {
                     result.cameras.push({
                         url_camera: devices[i].url_camera,
                         name: devices[i].camera_name
