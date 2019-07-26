@@ -185,6 +185,7 @@ const repository = {
                 " from users " +
                 "right join devices on devices.user_id = users.idUser " +
                 "inner join device_models on devices.idDeviceModel = device_models.idDeviceModel " +
+                "left join camera on devices.idDevice = camera.device_id " +
                 "where devices.trashed is null or devices.trashed = 0";
         } else {
             query = "select distinct dgroup.id as group_id, dgroup.label as group_label, " +
