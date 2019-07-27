@@ -55,7 +55,9 @@ const repository = {
                     "FROM `devices` AS `devices` LEFT OUTER JOIN `device_models` AS `device_model` ON `devices`.`idDeviceModel` = `device_model`.`idDeviceModel` " +
                     "LEFT OUTER JOIN `vehicle` AS `vehicle` ON `devices`.`idDevice` = `vehicle`.`device_id` LEFT OUTER JOIN ( `user_devices` AS `users->user_devices` " +
                     "INNER JOIN `users` AS `users` ON `users`.`idUser` = `users->user_devices`.`idUser`) ON `devices`.`idDevice` = `users->user_devices`.`idDevice` " +
-                    "inner join peripheral_gps_data_last as peripheral_gps_data on peripheral_gps_data.idDevice = devices.idDevice WHERE (`devices`.`user_id` = " + id + ")";
+                    "inner join peripheral_gps_data_last as peripheral_gps_data on peripheral_gps_data.idDevice = devices.idDevice " +
+                    "left outer join camera on camera.device_id = devices.idDevice " +
+                    "WHERE (`devices`.`user_id` = " + id + ")";
             }
             var devicesResult = await db.sequelize.query(query);
 
