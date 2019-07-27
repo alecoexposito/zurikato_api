@@ -55,7 +55,9 @@ const repository = {
                     "FROM `devices` AS `devices` LEFT OUTER JOIN `device_models` AS `device_model` ON `devices`.`idDeviceModel` = `device_model`.`idDeviceModel` " +
                     "LEFT OUTER JOIN `vehicle` AS `vehicle` ON `devices`.`idDevice` = `vehicle`.`device_id` LEFT OUTER JOIN ( `user_devices` AS `users->user_devices` " +
                     "INNER JOIN `users` AS `users` ON `users`.`idUser` = `users->user_devices`.`idUser`) ON `devices`.`idDevice` = `users->user_devices`.`idDevice` " +
-                    "inner join peripheral_gps_data_last as peripheral_gps_data on peripheral_gps_data.idDevice = devices.idDevice WHERE (`devices`.`user_id` = " + id + ")";
+                    "inner join peripheral_gps_data_last as peripheral_gps_data on peripheral_gps_data.idDevice = devices.idDevice " +
+                    "left outer join camera on camera.device_id = devices.idDevice " +
+                    "WHERE (`devices`.`user_id` = " + id + ")";
             }
             var devicesResult = await db.sequelize.query(query);
 
@@ -196,6 +198,7 @@ const repository = {
                 "right join devices on devices.idDevice = device_group.device_id " +
                 "inner join peripheral_gps_data on devices.idDevice = peripheral_gps_data.idDevice " +
                 "inner join device_models on devices.idDeviceModel = device_models.idDeviceModel " +
+                "left join camera on devices.idDevice = camera.device_id " +
                 "where (dgroup.user_id = " + id + " or dgroup.id is null) and devices.user_id = " + id  + " and (devices.trashed is null or devices.trashed = 0)";
         }
 
