@@ -167,7 +167,7 @@ const repository = {
                     result.cameras.push({
                         url_camera: devices[i].url_camera,
                         name: devices[i].camera_name,
-                        id: devices[i].camera_id
+                        id: devices[i].id_camera
                     });
                 }
                 result.company_name = result.users.company_name;
@@ -185,7 +185,7 @@ const repository = {
         if(isAdmin == true || isAdmin == "true") {
             query = "select distinct users.idUser as group_id, users.username as group_label, " +
                 "devices.label as device_label, devices.idDevice as device_id, devices.auth_device as auth_device, device_models.label as device_model, " +
-                "camera.url_camera, camera.name as camera_name" +
+                "camera.url_camera, camera.name as camera_name, camera.id as id_camera" +
                 " from users " +
                 "right join devices on devices.user_id = users.idUser " +
                 "inner join device_models on devices.idDeviceModel = device_models.idDeviceModel " +
