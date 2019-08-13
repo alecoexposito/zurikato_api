@@ -23,6 +23,7 @@ const repository = {
         } else {
             data = await db.devices.findOne({ where: { auth_device: gpsData.device_id } });
         }
+
         if(deviceModel == "BB") {
             console.log("################ BUSCADO POR ESTE IMEI: ", gpsData.device_id);
             console.log("################ RESULTADO DE DATA DESPUES DE BUSCAR ################################", data);
