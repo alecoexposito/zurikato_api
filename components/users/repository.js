@@ -193,7 +193,8 @@ const repository = {
                 "where devices.trashed is null or devices.trashed = 0";
         } else {
             query = "select distinct dgroup.id as group_id, dgroup.label as group_label, " +
-                "devices.label as device_label, devices.idDevice as device_id, devices.auth_device as auth_device, device_models.label as device_model" +
+                "devices.label as device_label, devices.idDevice as device_id, devices.auth_device as auth_device, device_models.label as device_model, " +
+                "camera.url_camera, camera.name as camera_name, camera.id as id_camera" +
                 " from dgroup " +
                 "inner join device_group on group_id = dgroup.id " +
                 "right join devices on devices.idDevice = device_group.device_id " +
