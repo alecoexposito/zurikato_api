@@ -30,6 +30,11 @@ var middleware = {
         var records = await factory._coordinatesByDates(req.params.id, start_date, end_date);
         res.json(records);
     },
+
+    camerasInAutoplay: async function(req, res) {
+        var records = await factory._camerasInAutoplay(req.params.id);
+        res.json(records);
+    },
 };
 
 module.exports = middleware;

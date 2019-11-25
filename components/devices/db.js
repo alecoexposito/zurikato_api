@@ -9,7 +9,7 @@ db.sequelize = sequelize;
 db.devices = require('./entities/Device')(sequelize, Sequelize);
 db.deviceModel = require('./entities/DeviceModel.js')(sequelize, Sequelize);
 db.vehicle = require('./entities/Vehicle.js')(sequelize, Sequelize);
-db.vehicle = require('./entities/Camera.js')(sequelize, Sequelize);
+db.camera = require('./entities/Camera.js')(sequelize, Sequelize);
 
 db.devices.belongsTo(db.deviceModel, { foreignKey: 'idDeviceModel' });
 db.deviceModel.hasMany(db.devices, { foreignKey: 'idDeviceModel' });

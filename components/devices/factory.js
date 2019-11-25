@@ -53,6 +53,15 @@ var factory = {
             routesData = [];
         }
         return routesData;
+    },
+    _camerasInAutoplay: async function(id) {
+        let records = [];
+        try {
+            records = await repository.camerasInAutoplay(id);
+        } catch (error) {
+            records = [];
+        }
+        return records;
     }
 };
 

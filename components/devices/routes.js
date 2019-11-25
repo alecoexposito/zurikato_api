@@ -13,4 +13,6 @@ module.exports = (router) => {
     router.get('/devices/:id/alarmsByType', middleware.alarmsByType);
     router.get('/devices/:id/coordinatesByDates', middleware.coordinatesByDates);
 
+    router.get('/devices/:id/camerasInAutoplay', middleware.camerasInAutoplay);
+
 };

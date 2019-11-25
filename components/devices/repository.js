@@ -32,6 +32,11 @@ const repository = {
             "FROM `peripheral_gps_data` AS `peripheral_gps_data` INNER JOIN `devices` AS `device` ON `peripheral_gps_data`.`idDevice` = `device`.`idDevice` WHERE str_to_date(`peripheral_gps_data`.`createdAt`, '%Y-%m-%d %H:%i:%s') BETWEEN str_to_date('" + startDate + "', '%Y-%m-%d %H:%i:%s') AND str_to_date('" + endDate + "', '%Y-%m-%d %H:%i:%s') AND `peripheral_gps_data`.`idDevice`=" + id + " order by str_to_date(`peripheral_gps_data`.`createdAt`,'%Y-%m-%d %H:%i:%s') ASC;";
         let data = await db.sequelize.query(query);
         return data[0];
+    },
+    camerasInAutoplay: async function(id) {
+        let query = "select * from camera where device_id = " + id + " and in_autoplay = true";
+        let data = await db.sequelize.query(query);
+        return data[0];
     }
 };
 module.exports = repository;

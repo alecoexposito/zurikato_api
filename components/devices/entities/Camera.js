@@ -1,5 +1,5 @@
 module.exports = (sequelize, DataTypes)=>{
-    const vehicle = sequelize.define('camera', {id: {type: DataTypes.INTEGER,
+    const camera = sequelize.define('camera', {id: {type: DataTypes.INTEGER,
         autoIncrement: true,
         primaryKey: true
     },
@@ -13,6 +13,8 @@ module.exports = (sequelize, DataTypes)=>{
         updated_at: { type: DataTypes.DATETIME},
         url_camera: { type: DataTypes.STRING},
         name: { type: DataTypes.STRING},
+        in_autoplay: { type: DataTypes.BOOLEAN},
+        autoplay_interval: { type: DataTypes.INTEGER},
     }, {freezeTableName: true});
-    return vehicle;
+    return camera;
 };
