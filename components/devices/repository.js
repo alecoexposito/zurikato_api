@@ -34,9 +34,17 @@ const repository = {
         return data[0];
     },
     camerasInAutoplay: async function(id) {
-        let query = "select * from camera where device_id = " + id + " and in_autoplay = true";
+        let query = "select * from camera where device_id = " + id + " and in_autoplay = 1";
         let data = await db.sequelize.query(query);
         return data[0];
-    }
+    },
+    setCameraAutoplay: async function(id, interval) {
+        let query = "update camera set in_autoplay = 1, interval = " + interval + " where id = " + id + "";
+        db.sequelize.query(query);
+    },
+    removeCameraAutoplay: async function(id) {
+        let query = "update camera set in_autoplay = 0 where id = " + id + "";
+        db.sequelize.query(query);
+    },
 };
 module.exports = repository;

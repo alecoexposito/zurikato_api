@@ -35,6 +35,17 @@ var middleware = {
         var records = await factory._camerasInAutoplay(req.params.id);
         res.json(records);
     },
+
+    setCameraAutoplay: async function(req, res) {
+        let intervalSeconds = req.params.interval;
+        var records = await factory._setCameraAutoplay(req.params.id, intervalSeconds);
+        res.json(records);
+    },
+
+    removeCameraAutoplay: async function(req, res) {
+        var records = await factory._removeCameraAutoplay(req.params.id);
+        res.json(records);
+    },
 };
 
 module.exports = middleware;

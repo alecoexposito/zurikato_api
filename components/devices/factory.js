@@ -62,7 +62,25 @@ var factory = {
             records = [];
         }
         return records;
-    }
+    },
+
+    _setCameraAutoplay: async function(id, interval) {
+        try {
+            repository.setCameraAutoplay(id, interval);
+        } catch (error) {
+            return error;
+        }
+        return {success: true};
+    },
+
+    _removeCameraAutoplay: async function(id) {
+        try {
+            repository.removeCameraAutoplay(id);
+        } catch (error) {
+            return error;
+        }
+        return {success: true};
+    },
 };
 
 module.exports = factory;
