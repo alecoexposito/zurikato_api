@@ -38,7 +38,7 @@ var middleware = {
 
     setCameraAutoplay: async function(req, res) {
         console.log(req.body);
-        let intervalSeconds = req.query.interval;
+        let intervalSeconds = req.body.interval;
         var records = await factory._setCameraAutoplay(req.params.id, intervalSeconds);
         res.json(records);
     },
