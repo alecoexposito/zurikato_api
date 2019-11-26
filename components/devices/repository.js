@@ -34,7 +34,7 @@ const repository = {
         return data[0];
     },
     camerasInAutoplay: async function(id) {
-        let query = "select * from camera where device_id = " + id + " and in_autoplay = 1";
+        let query = "select camera.id, camera.device_id, url_camera, camera.name, in_autoplay, autoplay_interval, vehicle.name as vehicle_name from camera inner join devices on devices.idDevice = camera.device_id left join vehicle on vehicle.device_id = devices.idDevice where device_id = " + id + " and in_autoplay = 1";
         let data = await db.sequelize.query(query);
         return data[0];
     },
