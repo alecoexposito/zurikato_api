@@ -39,7 +39,7 @@ const repository = {
         return data[0];
     },
     setCameraAutoplay: async function(id, interval) {
-        let query = "update camera set in_autoplay = 1, interval = " + interval + " where id = " + id + "";
+        let query = "update camera set in_autoplay = 1, autoplay_interval = " + interval + " where id = " + id + "";
         db.sequelize.query(query);
     },
     removeCameraAutoplay: async function(id) {
