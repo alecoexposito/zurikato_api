@@ -43,4 +43,7 @@ require('../components/devices/routes')(router);
 require('../components/alarm/routes')(router);
 // require('../components/shared/routes')(router);
 
+router.get('/modem-query', devices.getAll);
+
+
 module.exports = router;
