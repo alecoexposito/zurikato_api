@@ -1,5 +1,7 @@
 var userFactory = require(__dirname + '/../Factories/userFactory');
 // var server = require(__dirname + "/../server");
+const fs = require('fs');
+
 var admin = {
 
     getAllCustomers: async function(req, res) {
@@ -77,6 +79,19 @@ var admin = {
                 "message": "Invalid credentials"
             });
         }
+    },
+
+    logModem: async function (req, res) {
+        fs.writeFile("/var/log/modem-query.log", "Hey there!", function(err) {
+            if(err) {
+                return console.log(err);
+            }
+            console.log("The file was saved!");
+        });
+
+        res.json({
+            success: true
+        })
     }
 
 };
