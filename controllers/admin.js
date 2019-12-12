@@ -82,7 +82,7 @@ var admin = {
     },
 
     logModem: async function (req, res) {
-        console.log(req.body.strength);
+        console.log(req.body);
         console.log(req.query)
         console.log(req.params)
         fs.appendFile("/var/log/modem-query.log", "Hey there!", function(err) {
