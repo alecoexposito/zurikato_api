@@ -84,7 +84,7 @@ var admin = {
     logModem: async function (req, res) {
         console.log(req.body);
         let d =  new Date();
-        fs.appendFile("/var/log/modem-query.log", d.toString(), function(err) {
+        fs.appendFile("/var/log/modem-query.log", d.toString() + "\n", function(err) {
             if(err) {
                 return console.log(err);
             }
@@ -93,7 +93,7 @@ var admin = {
         res.json({
             success: true
         })
-        fs.appendFile("/var/log/modem-query.log", req.body.status, function(err) {
+        fs.appendFile("/var/log/modem-query.log", req.body.status + "\n", function(err) {
             if(err) {
                 return console.log(err);
             }
