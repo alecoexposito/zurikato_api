@@ -40,8 +40,9 @@ var middleware = {
 
     groups: async function(req, res) {
         var id = req.params.id;
-        var isAdmin = req.params.isAdmin
-        var groups = await factory._getGroups(id, isAdmin);
+        var isAdmin = req.params.isAdmin;
+        var isAdminUser = req.params.isAdminUser;
+        var groups = await factory._getGroups(id, isAdmin, isAdminUser);
         res.json(groups);
     },
 

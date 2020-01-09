@@ -183,11 +183,20 @@ const repository = {
          }catch(error){console.log(error);}
     },
 
-    getGroups: async function(id, isAdmin) {
+    getGroups: async function(id, isSuperAdmin, isAdminUser = false) {
 
         let query = "";
 
-        if(isAdmin == true || isAdmin == "true") {
+        if(isSuperAdmin == true || isSuperAdmin == "true") {
+            query = "select distinct users.idUser as group_id, users.username as group_label, " +
+                "devices.label as device_label, devices.idDevice as device_id, devices.auth_device as auth_device, device_models.label as device_model, " +
+                "camera.url_camera, camera.name as Supercamera_name, camera.id as id_camera, camera.in_autoplay as camera_in_autoplay, camera.autoplay_interval as camera_autoplay_interval" +
+                " from users " +
+                "right join devices on devices.user_id = users.idUser " +
+                "inner join device_models on devices.idDeviceModel = device_models.idDeviceModel " +
+                "left join camera on devices.idDevice = camera.device_id " +
+                "where devices.trashed is null or devices.trashed = 0";
+        } else if(isAdminUser == true || isAdminUser == "true") {
             query = "select distinct users.idUser as group_id, users.username as group_label, " +
                 "devices.label as device_label, devices.idDevice as device_id, devices.auth_device as auth_device, device_models.label as device_model, " +
                 "camera.url_camera, camera.name as camera_name, camera.id as id_camera, camera.in_autoplay as camera_in_autoplay, camera.autoplay_interval as camera_autoplay_interval" +
@@ -195,7 +204,7 @@ const repository = {
                 "right join devices on devices.user_id = users.idUser " +
                 "inner join device_models on devices.idDeviceModel = device_models.idDeviceModel " +
                 "left join camera on devices.idDevice = camera.device_id " +
-                "where devices.trashed is null or devices.trashed = 0";
+                "where (devices.trashed is null or devices.trashed = 0) and users.admin_id = " + id;
         } else {
             query = "select distinct dgroup.id as group_id, dgroup.label as group_label, " +
                 "devices.label as device_label, devices.idDevice as device_id, devices.auth_device as auth_device, device_models.label as device_model, " +
