@@ -62,6 +62,8 @@ var userFactory = {
                     data.auth_token = genToken(repository.users.parseUser(data));
                 }
                 User.auth_token = data.auth_token;
+                User.roles = data.roles;
+                User.admin_id = data.admin_id;
                 return User;
             }
         }
