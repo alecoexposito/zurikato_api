@@ -7,10 +7,10 @@ const config = require('../../config');
 var repository = require('./repository');
 var factory = {
 
-    _getDevices: async function(id, isAdmin) {
+    _getDevices: async function(id, isAdmin, isAdminUser) {
         let devices = [];
         try {
-            devices = await repository.getDevices(id, isAdmin);
+            devices = await repository.getDevices(id, isAdmin, isAdminUser);
         } catch (error) {
             devices = [];
         }
