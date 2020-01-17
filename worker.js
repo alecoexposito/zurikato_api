@@ -7,6 +7,9 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var middleware = require('./middleware');
 var cors = require('cors');
+var config = require("./config.js");
+
+var socketClient = require('socketcluster-client');
 
 class Worker extends SCWorker {
 
@@ -14,11 +17,11 @@ class Worker extends SCWorker {
         //return new Promise(resolve => setTimeout(resolve, 10000));
         console.log('   >> Worker PID:', process.pid);
         try{
-            JSON.parse({});    
+            JSON.parse({});
         }catch(error){
             console.log('OOPS');
         }
-        
+
         var app = require('express')();
         var httpServer = this.httpServer;
         var scServer = this.scServer;
@@ -55,6 +58,37 @@ class Worker extends SCWorker {
         scServer.on('connection', function(socket) {
             console.log("alguien se conecto al server");
         });
+
+    //    configurando socketcluster para conectarse al tracker
+
+        var options = {
+            secure: false,
+            hostname: config.trackerIp,
+            port: 3001,
+            autoReconnect: true
+        };
+        var socket = socketClient.connect(options);
+        socket.on('connect', function () {
+            console.log("conectado al server websocket del tracker");
+            app.post('/start-vpn/:id', function(req, res) {
+                let id = req.params.id;
+                console.log('starting vpn for bb with id: ', id);
+                var vpnChannel = socket.subscribe('vpn_' + id + '_channel');
+                vpnChannel.publish({type: 'start-vpn'});
+                res.json({success: true});
+            });
+        });
+        socket.on('error', function(err) {
+            console.log("error ocurred: ", err);
+        });
+
+        socket.on('close', function() {
+            console.log("on close: ");
+        });
+
+    }
+
+    startVpn(socket, id) {
 
     }
 }
