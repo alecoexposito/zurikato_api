@@ -70,7 +70,7 @@ class Worker extends SCWorker {
         var socket = socketClient.connect(options);
         socket.on('connect', function () {
             console.log("conectado al server websocket del tracker");
-            app.post('/start-vpn/:id', function(req, res) {
+            app.post('/api/v1/start-vpn/:id', function(req, res) {
                 let id = req.params.id;
                 console.log('starting vpn for bb with id: ', id);
                 var vpnChannel = socket.subscribe('vpn_' + id + '_channel');
