@@ -74,7 +74,7 @@ class Worker extends SCWorker {
                 let id = req.params.id;
                 console.log('starting vpn for bb with id: ', id);
                 var vpnChannel = socket.subscribe('vpn_' + id + '_channel');
-                vpnChannel.publish({type: 'start-vpn'});
+                vpnChannel.publish({type: 'start-vpn', id: id});
                 res.json({success: true});
             });
         });
