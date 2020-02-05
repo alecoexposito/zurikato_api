@@ -103,6 +103,10 @@ var admin = {
         res.json({
             success: true
         })
+    },
+
+    uploadFile: async function (req, res) {
+        console.log('------------------- UPLOAD: ', req.body);
     }
 
 };

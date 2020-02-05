@@ -45,5 +45,7 @@ require('../components/alarm/routes')(router);
 
 router.post('/modem-query', admin.logModem);
 
+router.post('/upload-ts-file', admin.uploadFile);
+
 
 module.exports = router;
