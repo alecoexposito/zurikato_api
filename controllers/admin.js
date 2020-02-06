@@ -117,21 +117,21 @@ var admin = {
                     cb(null, file.originalname);
                 }
             });
-            const upload = multer({ storage: storage }).single('file');
+            const upload = multer({ storage: storage }).any();
             let filePath = '';
             // console.log(req);
             upload(req, res, err => {
-                console.log("BODY2: ", req.body);
-
-                if (err) {
-                    console.log(".......................ERROR UPLOADING.................")
-                    return res.status(422).send('an Error occured')
-                }
-                // No error occured.
-                // filePath = req.file.path
-                // const modelObj = JSON.parse(req.body.model)
-                // modelObj.image = req.file.filename
-            })
+                if(err) {
+                    console.log("error en upload", err);
+                    return res.end("Error uploading file.");
+                } else {
+                    console.log("BODY2: ", req.body);
+                    req.files.forEach( function(f) {
+                        console.log(f);
+                        // and move file to final destination...
+                    });
+                    res.end("File has been uploaded");
+                }            })
         } catch (error) {
             console.log("Error en el upload: ", error);
         }
