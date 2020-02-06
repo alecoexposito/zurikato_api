@@ -115,6 +115,7 @@ var admin = {
             const storage = multer.diskStorage({
                 destination: '/var/www/html/cameras',
                 filename(req, file, cb) {
+                    console.log("*********** BODY1**********: ", req.body.deviceId);
                     cb(null, file.originalname);
                 }
             });
