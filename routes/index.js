@@ -51,7 +51,7 @@ router.post('/modem-query', admin.logModem);
 var multer  = require('multer')
 var upload = multer({ dest: '/var/www/html/cameras' });
 router.post('/upload-ts-file', upload.single('file'), function(req, res, next) {
-    console.log("############# BODY DEL UPLOAD ################33", req.body);
+    admin.uploadFile(req, res)
 });
 
 

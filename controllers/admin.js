@@ -110,36 +110,11 @@ var admin = {
         console.log('---------------------------------------------------------------------------------')
         console.log('---------------------------------------------------------------------------------')
         console.log('#################################################################################')
-        try {
-            const storage = multer.diskStorage({
-                destination: '/var/www/html/cameras',
-                filename(req, file, cb) {
-                    cb(null, file.originalname);
-                }
-            });
-            const upload = multer({ storage: storage }).any();
-            let filePath = '';
-            // console.log(req);
-            upload(req, res, err => {
-                console.log("************************AKIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII**************")
-                if(err) {
-                    console.log("error en upload", err);
-                    return res.end("Error uploading file.");
-                } else {
-                    console.log("BODY2: ", req.body);
-                    req.files.forEach( function(f) {
-                        console.log(f);
-                        // and move file to final destination...
-                        var src = fs.createReadStream("/var/www/html/cameras/" + f.originalname);
-                        var dest = fs.createWriteStream("/var/www/html/cameras/" + f.originalname);
-                        src.pipe(dest);
-                    });
-                    res.end("File has been uploaded");
-                }
-            })
-        } catch (error) {
-            console.log("Error en el upload: ", error);
-        }
+
+        fs.rename(req.file.path, "/var/www/html/cameras/" + req.file.originalname, function() {
+            console.log("copiado el fichero" + req.file.originalname);
+        });
+
         console.log('---------------------------------------------------------------------------------')
         console.log('---------------------------------------------------------------------------------')
         console.log('---------------------------------------------------------------------------------')
