@@ -114,7 +114,7 @@ var admin = {
         var dir = "/var/www/html/cameras/" + req.body.deviceId + "/" + req.body.playlist;
 
         if (!fs.existsSync(dir)){
-            fs.mkdirSync(dir);
+            fs.mkdirSync(dir, {recursive: true});
         }
 
         fs.rename(req.file.path, "/var/www/html/cameras/" + req.body.deviceId + "/" + req.body.playlist + "/" + req.file.originalname, function() {
