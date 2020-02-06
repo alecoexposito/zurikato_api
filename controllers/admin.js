@@ -111,7 +111,6 @@ var admin = {
         console.log('---------------------------------------------------------------------------------')
         console.log('#################################################################################')
         try {
-            console.log("BODY: ", req.body);
             // req = matchedData(req)
             const storage = multer.diskStorage({
                 destination: '/var/www/html/cameras',
@@ -123,6 +122,8 @@ var admin = {
             let filePath = '';
             // console.log(req);
             upload(req, res, err => {
+                console.log("BODY2: ", req.body);
+
                 if (err) {
                     // An error occurred when uploading
                     return res.status(422).send('an Error occured')
