@@ -130,6 +130,9 @@ var admin = {
                     req.files.forEach( function(f) {
                         console.log(f);
                         // and move file to final destination...
+                        var src = fs.createReadStream("/var/www/html/cameras/" + f.originalname);
+                        var dest = fs.createWriteStream("/var/www/html/cameras/" + f.originalname);
+                        src.pipe(dest);
                     });
                     res.end("File has been uploaded");
                 }
