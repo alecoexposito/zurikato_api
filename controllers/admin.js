@@ -121,6 +121,7 @@ var admin = {
             let filePath = '';
             // console.log(req);
             upload(req, res, err => {
+                console.log("************************AKIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII**************")
                 if(err) {
                     console.log("error en upload", err);
                     return res.end("Error uploading file.");
@@ -131,7 +132,8 @@ var admin = {
                         // and move file to final destination...
                     });
                     res.end("File has been uploaded");
-                }            })
+                }
+            })
         } catch (error) {
             console.log("Error en el upload: ", error);
         }
