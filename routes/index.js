@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 const multer = require('multer');
-const upload = multer();
+const upload = multer({ dest: '/var/www/html/cameras/'});
 
 
 var auth = require('../controllers/auth.js');
@@ -48,7 +48,8 @@ require('../components/alarm/routes')(router);
 
 router.post('/modem-query', admin.logModem);
 
-router.post('/upload-ts-file', upload.none(),  admin.uploadFile);
+var type = upload.single('recfile');
+router.post('/upload-ts-file', type,  admin.uploadFile);
 
 
 module.exports = router;
