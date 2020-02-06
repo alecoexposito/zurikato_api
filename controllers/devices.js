@@ -107,7 +107,6 @@ var devices = {
         }
         var devices = await deviceFactory.getDevicesLastData(jsession);
         // console.log("devices: ", devices);
-        console.log("-------------------------- GOING TO SAVE ON SEMOV LOG ---------------------------- ");
         deviceFactory.saveSemovLog(JSON.stringify(devices));
         res.status(200);
         res.json(devices);

@@ -35,7 +35,6 @@ const repository = {
         }
 
 
-        console.log("************************************************************GPS DATA: ", gpsData);
         let gps = { 'idDevice': data.idDevice, 'lat': gpsData.latitude, 'lng': gpsData.longitude, 'speed': gpsData.speed, 'orientation_plain': gpsData.track, 'gps_status': gpsData.gps_status };
         // console.log("gpsdata: ", gpsData);
         if(gpsData.createdAt) {
