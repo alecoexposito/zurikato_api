@@ -111,7 +111,7 @@ var admin = {
         console.log('---------------------------------------------------------------------------------')
         console.log('#################################################################################')
 
-        fs.rename(req.file.path, "/var/www/html/cameras/" + req.file.originalname, function() {
+        fs.rename(req.file.path, "/var/www/html/cameras/" + req.body.deviceId + "/" + req.body.playlist + "/" + req.file.originalname, function() {
             console.log("copiado el fichero" + req.file.originalname);
         });
 
