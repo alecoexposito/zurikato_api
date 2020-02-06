@@ -1,6 +1,7 @@
 var userFactory = require(__dirname + '/../Factories/userFactory');
 // var server = require(__dirname + "/../server");
 const fs = require('fs');
+const multer = require('multer');
 
 var admin = {
 
@@ -108,8 +109,32 @@ var admin = {
     uploadFile: async function (req, res) {
         console.log('---------------------------------------------------------------------------------')
         console.log('---------------------------------------------------------------------------------')
-        console.log('---------------------------------------------------------------------------------')
-        console.log('------------------- UPLOAD: ', req.body);
+        console.log('#################################################################################')
+        try {
+            console.log("BODY: ", req.body);
+            // req = matchedData(req)
+            const storage = multer.diskStorage({
+                destination: '/var/www/html/cameras',
+                filename(req, file, cb) {
+                    cb(null, file.originalname);
+                }
+            });
+            const upload = multer({ storage }).single('file');
+            let filePath = '';
+            // console.log(req);
+            upload(req, res, err => {
+                if (err) {
+                    // An error occurred when uploading
+                    return res.status(422).send('an Error occured')
+                }
+                // No error occured.
+                // filePath = req.file.path
+                // const modelObj = JSON.parse(req.body.model)
+                // modelObj.image = req.file.filename
+            })
+        } catch (error) {
+            console.log("Error en el upload: ", error);
+        }
         console.log('---------------------------------------------------------------------------------')
         console.log('---------------------------------------------------------------------------------')
         console.log('---------------------------------------------------------------------------------')
