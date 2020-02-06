@@ -111,22 +111,20 @@ var admin = {
         console.log('---------------------------------------------------------------------------------')
         console.log('#################################################################################')
         try {
-            // req = matchedData(req)
             const storage = multer.diskStorage({
                 destination: '/var/www/html/cameras',
                 filename(req, file, cb) {
-                    console.log("*********** BODY1**********: ", req.body.deviceId);
                     cb(null, file.originalname);
                 }
             });
-            const upload = multer({ storage }).single('file');
+            const upload = multer({ storage: storage }).single('file');
             let filePath = '';
             // console.log(req);
             upload(req, res, err => {
                 console.log("BODY2: ", req.body);
 
                 if (err) {
-                    // An error occurred when uploading
+                    console.log(".......................ERROR UPLOADING.................")
                     return res.status(422).send('an Error occured')
                 }
                 // No error occured.
