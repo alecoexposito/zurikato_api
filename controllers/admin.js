@@ -111,6 +111,12 @@ var admin = {
         console.log('---------------------------------------------------------------------------------')
         console.log('#################################################################################')
 
+        var dir = "/var/www/html/cameras/" + req.body.deviceId + "/" + req.body.playlist;
+
+        if (!fs.existsSync(dir)){
+            fs.mkdirSync(dir);
+        }
+
         fs.rename(req.file.path, "/var/www/html/cameras/" + req.body.deviceId + "/" + req.body.playlist + "/" + req.file.originalname, function() {
             console.log("copiado el fichero" + req.file.originalname);
         });
