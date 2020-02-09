@@ -40,6 +40,7 @@ const repository = {
         if(gpsData.createdAt) {
             console.log("createdAt is in the data");
             gps.createdAt = gpsData.createdAt;
+            gps.vDate = "offline";
         }
         // console.log("gps before create: ", gps);
         data = await db.gpsData.create(gps);
