@@ -77,6 +77,13 @@ class Worker extends SCWorker {
                 vpnChannel.publish({type: 'start-vpn', id: id});
                 res.json({success: true});
             });
+            app.post('/api/v1/restart-bb/:id', function(req, res) {
+                let id = req.params.id;
+                console.log('restarting bb with id: ', id);
+                var restartChannel = socket.subscribe('restart_' + id + '_channel');
+                restartChannel.publish({type: 'restart-bb', id: id});
+                res.json({success: true});
+            });
         });
         socket.on('error', function(err) {
             console.log("error ocurred: ", err);
