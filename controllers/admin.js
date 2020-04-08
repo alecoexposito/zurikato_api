@@ -136,7 +136,8 @@ var admin = {
             result = await deviceFactory._getApiPass();
             res.json(result);
         } else {
-            res.status(403).render();
+            res.status(403);
+            res.render('forbidden');
         }
     },
 
