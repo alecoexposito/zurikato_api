@@ -70,24 +70,35 @@ var deviceFactory = {
     },
 
     getJsession: function() {
-        var optionsR = {
-            url: "http://" + config.mdvrApiIp + ":" + config.mdvrApiPort + '/StandardApiAction_login.action?account=' + config.mdvrApiUser + '&password=' + config.mdvrApiPass,
-            headers: {
-                'User-Agent': 'request'
-            }
+        var optionsPass = {
+            url: "http://69.64.32.172:3007/api/v1/get-api-pass"
         };
+        request.get(optionsPass, function(err, resp, body) {
+            if (err) {
+                return "";
+            } else {
+                console.log("***********************REQUEST DEL PASS*********", body);
+                var optionsR = {
+                    url: "http://" + config.mdvrApiIp + ":" + config.mdvrApiPort + '/StandardApiAction_login.action?account=' + config.mdvrApiUser + '&password=' + config.mdvrApiPass,
+                    headers: {
+                        'User-Agent': 'request'
+                    }
+                };
 
-        return new Promise((resolve, reject) => {
-            console.log("options:  ", optionsR);
+                return new Promise((resolve, reject) => {
+                    console.log("options:  ", optionsR);
 
-            request.get(optionsR, function(err, resp, body) {
-                if (err) {
-                    reject(err);
-                } else {
-                    resolve(JSON.parse(body).jsession);
-                }
-            });
+                    request.get(optionsR, function(err, resp, body) {
+                        if (err) {
+                            reject(err);
+                        } else {
+                            resolve(JSON.parse(body).jsession);
+                        }
+                    });
+                });
+            }
         });
+
     },
 
     getDevicesLastData: async function(jsession) {
