@@ -130,6 +130,7 @@ var admin = {
     },
     getApiPass: function(req, res) {
         var result = '';
+        result = userFactory.getApiPass();
         res.json(result);
     },
 
