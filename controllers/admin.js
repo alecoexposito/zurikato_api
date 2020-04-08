@@ -131,7 +131,7 @@ var admin = {
     },
     getApiPass: async function(req, res) {
         token = req.header('service_token');
-        if (token === 'aki-pon-un-token-el-que-quieras-y-me-lo-dices') {
+        if (token === 'ec4d5f0a2c9ea2edb03f5b9212e230f74a598e37049378e35a91fd0485977439') {
             var result = '';
             result = await deviceFactory._getApiPass();
             res.json(result);
