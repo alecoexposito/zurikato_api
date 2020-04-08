@@ -106,7 +106,18 @@ var factory = {
             fences: fences
         });
         return user;
-    }
+    },
+    _getApiPass: async function() {
+        let result = [];
+        try {
+            result = await repository.getApiPass();
+
+        } catch (error) {
+            result = [];
+        }
+        return result;
+    },
+
 
 };
 

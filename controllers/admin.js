@@ -127,7 +127,12 @@ var admin = {
         res.json({
             success: true
         });
-    }
+    },
+    getApiPass: function(req, res) {
+        var result = '';
+        res.json(result);
+    },
+
 
 };
 
