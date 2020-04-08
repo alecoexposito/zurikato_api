@@ -261,11 +261,6 @@ const repository = {
             }]
         });
         return userData;
-    },
-    getApiPass: async function() {
-        let query = "select api_pass from api_options";
-        let data = await db.sequelize.query(query);
-        return data[0];
     }
 };
 module.exports = repository;
