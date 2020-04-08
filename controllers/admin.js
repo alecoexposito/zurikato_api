@@ -128,9 +128,9 @@ var admin = {
             success: true
         });
     },
-    getApiPass: function(req, res) {
+    getApiPass: async function(req, res) {
         var result = '';
-        result = userFactory.getApiPass();
+        result = await userFactory._getApiPass();
         res.json(result);
     },
 
