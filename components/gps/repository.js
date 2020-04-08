@@ -25,8 +25,8 @@ const repository = {
         }
 
         if(deviceModel == "BB") {
-            console.log("################ BUSCADO POR ESTE IMEI: ", gpsData.device_id);
-            console.log("################ RESULTADO DE DATA DESPUES DE BUSCAR ################################", data);
+            // console.log("################ BUSCADO POR ESTE IMEI: ", gpsData.device_id);
+            // console.log("################ RESULTADO DE DATA DESPUES DE BUSCAR ################################", data);
         }
         if (data == null) {
             let device = { 'idDeviceModel': modelId, 'label': deviceLabel, 'auth_device': gpsData.device_id, 'mdvr_number': mdvrNumber };
