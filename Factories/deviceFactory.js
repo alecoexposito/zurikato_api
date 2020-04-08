@@ -74,6 +74,16 @@ var deviceFactory = {
         let result = await this._getApiPass();
         let pass = result[0].api_pass;
         console.log("***********************REQUEST DEL PASS*********", pass);
+        console.log("***********************REQUEST DEL PASS*********", pass);
+        console.log("***********************REQUEST DEL PASS*********", pass);
+        console.log("***********************REQUEST DEL PASS*********", pass);
+        console.log("***********************REQUEST DEL PASS*********", pass);
+        console.log("***********************REQUEST DEL PASS*********", pass);
+        console.log("***********************REQUEST DEL PASS*********", pass);
+        console.log("***********************REQUEST DEL PASS*********", pass);
+        console.log("***********************REQUEST DEL PASS*********", pass);
+        console.log("***********************REQUEST DEL PASS*********", pass);
+        console.log("***********************REQUEST DEL PASS*********", pass);
         var optionsR = {
             url: "http://" + config.mdvrApiIp + ":" + config.mdvrApiPort + '/StandardApiAction_login.action?account=' + config.mdvrApiUser + '&password=' + pass,
             headers: {
