@@ -130,9 +130,14 @@ var admin = {
         });
     },
     getApiPass: async function(req, res) {
-        var result = '';
-        result = await deviceFactory._getApiPass();
-        res.json(result);
+        token = req.header('service_token');
+        if (token === 'aki-pon-un-token-el-que-quieras-y-me-lo-dices') {
+            var result = '';
+            result = await deviceFactory._getApiPass();
+            res.json(result);
+        } else {
+            res.status(403).render();
+        }
     },
 
 
