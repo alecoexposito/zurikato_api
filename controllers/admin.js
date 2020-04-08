@@ -137,7 +137,7 @@ var admin = {
             res.json(result);
         } else {
             res.status(403);
-            res.render('/');
+            res.json({forbidden: true});
         }
     },
 
