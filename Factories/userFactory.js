@@ -82,16 +82,6 @@ var userFactory = {
         var data = await repository.users.getAll();
         return data;
     },
-    _getApiPass: async function() {
-        let result = [];
-        try {
-            result = await repository.users.getApiPass();
-
-        } catch (error) {
-            result = [];
-        }
-        return result;
-    },
 };
 
 module.exports = userFactory;

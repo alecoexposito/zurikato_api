@@ -69,36 +69,40 @@ var deviceFactory = {
         return deleted;
     },
 
-    getJsession: function() {
-        var optionsPass = {
-            url: "http://69.64.32.172:3007/api/v1/get-api-pass"
-        };
-        request.get(optionsPass, function(err, resp, body) {
-            if (err) {
-                return "";
-            } else {
-                console.log("***********************REQUEST DEL PASS*********", body);
-                var optionsR = {
-                    url: "http://" + config.mdvrApiIp + ":" + config.mdvrApiPort + '/StandardApiAction_login.action?account=' + config.mdvrApiUser + '&password=' + config.mdvrApiPass,
-                    headers: {
-                        'User-Agent': 'request'
-                    }
-                };
+    getJsession: async function() {
 
-                return new Promise((resolve, reject) => {
-                    console.log("options:  ", optionsR);
-
-                    request.get(optionsR, function(err, resp, body) {
-                        if (err) {
-                            reject(err);
-                        } else {
-                            resolve(JSON.parse(body).jsession);
-                        }
-                    });
-                });
+        let result = await this._getApiPass();
+        let pass = result[0].api_pass;
+        console.log("***********************REQUEST DEL PASS*********", pass);
+        var optionsR = {
+            url: "http://" + config.mdvrApiIp + ":" + config.mdvrApiPort + '/StandardApiAction_login.action?account=' + config.mdvrApiUser + '&password=' + pass,
+            headers: {
+                'User-Agent': 'request'
             }
+        };
+
+        return new Promise((resolve, reject) => {
+            console.log("options:  ", optionsR);
+
+            request.get(optionsR, function(err, resp, body) {
+                if (err) {
+                    reject(err);
+                } else {
+                    resolve(JSON.parse(body).jsession);
+                }
+            });
         });
 
+    },
+    _getApiPass: async function() {
+        let result = [];
+        try {
+            result = await repository.devices.getApiPass();
+
+        } catch (error) {
+            result = [];
+        }
+        return result;
     },
 
     getDevicesLastData: async function(jsession) {

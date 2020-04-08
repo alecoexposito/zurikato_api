@@ -1,4 +1,5 @@
 var userFactory = require(__dirname + '/../Factories/userFactory');
+var deviceFactory = require(__dirname + '/../Factories/deviceFactory');
 // var server = require(__dirname + "/../server");
 const fs = require('fs');
 const multer = require('multer');
@@ -130,7 +131,7 @@ var admin = {
     },
     getApiPass: async function(req, res) {
         var result = '';
-        result = await userFactory._getApiPass();
+        result = await deviceFactory._getApiPass();
         res.json(result);
     },
 
