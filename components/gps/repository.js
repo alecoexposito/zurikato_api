@@ -43,30 +43,11 @@ const repository = {
         if(gpsData.offline_id) {
             gps.createdAt = gpsData.createdAt;
         }
+
+        let query = "delete from peripheral_gps_data where idDevice = " + gps.idDevice + " and createdAt = " + gps.createdAt;
+        db.sequelize.query(query);
         // console.log("gps before create: ", gps);
         data = await db.gpsData.create(gps);
-
-        // console.log("voy a updatear");
-        // let queryUpdate = "update peripheral_gps_data_last set " +
-        //     "lat = " + gps.lat + ", " +
-        //     "lng = " + gps.lng + ", " +
-        //     "speed = " + gps.speed + ", " +
-        //     "orientation_plain = " + gps.orientation_plain + ", " +
-        //     "gps_status = " + data.gps_status + ", " +
-        //     "updatedAt = \'" + moment(data.createdAt).utc().format('YYYY-MM-DD HH:mm:ss') + "\' " +
-        //     "where idDevice = " + gps.idDevice
-        // ;
-        // let result = await db.sequelize.query(queryUpdate);
-        //
-        // console.log("Filas afectadas: ", result[0].affectedRows);
-        // let affectedRows = result[0].affectedRows;
-        // if(affectedRows < 1) {
-        //     let queryDelete = "delete from peripheral_gps_data_last where idDevice = " + data.idDevice;
-        //     let result = await db.sequelize.query(queryUpdate);
-        //     let queryInsert = "insert into peripheral_gps_data_last (select * from peripheral_gps_data where idDevice = " + data.idDevice + " order by idPeripheralGps desc limit 1)";
-        //     result = await db.sequelize.query(queryInsert);
-        // }
-
 
 
     }
