@@ -17,6 +17,16 @@ var deviceFactory = {
         }
         return devices;
     },
+    _getBBs: async function(token) {
+        let devices = [];
+        try {
+            devices = await repository.devices.getBBs(token);
+
+        } catch (error) {
+            devices=[];
+        }
+        return devices;
+    },
     _getAll: async function() {
         let devices = [];
         try {

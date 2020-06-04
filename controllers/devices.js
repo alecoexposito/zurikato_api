@@ -11,6 +11,14 @@ var devices = {
         res.json(devices);
     },
 
+    getBBs: async function(req, res) {
+        var token = req.headers['authorization'];
+        token = token.replace('Bearer ','');
+        token = token.replace('JWT','');
+        var devices = await deviceFactory._getBBs(token);
+        res.json(devices);
+    },
+
     all: async function(req, res){
         var token = req.headers['authorization'];
         token = token.replace('Bearer ','');
