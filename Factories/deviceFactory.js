@@ -23,6 +23,7 @@ var deviceFactory = {
             devices = await repository.devices.getBBs(token);
 
         } catch (error) {
+            console.log("error: ", error);
             devices=[];
         }
         return devices;
