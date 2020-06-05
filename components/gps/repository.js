@@ -43,9 +43,10 @@ const repository = {
         if(gpsData.offline_id) {
             gps.createdAt = gpsData.createdAt;
         }
-
-        let query = "delete from peripheral_gps_data where idDevice = " + gps.idDevice + " and createdAt = " + gps.createdAt;
-        db.sequelize.query(query);
+        if (gps.createdAt) {
+            let query = "delete from peripheral_gps_data where idDevice = " + gps.idDevice + " and createdAt = " + gps.createdAt;
+            db.sequelize.query(query);
+        }
         // console.log("gps before create: ", gps);
         data = await db.gpsData.create(gps);
 

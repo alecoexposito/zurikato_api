@@ -20,6 +20,7 @@ router.post('/save-share', shared.saveShared);
 
 router.get('/devices', devices.getAll);
 router.get('/devices/bbs', devices.getBBs);
+
 /*router.get('/device/:id', devices.getDetails);
 router.post('/device/', devices.create);
 router.put('/device/:id', devices.update);
