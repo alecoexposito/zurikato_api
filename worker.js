@@ -13,7 +13,7 @@ var socketClient = require('socketcluster-client');
 
 class Worker extends SCWorker {
 
-    run() {
+    async run() {
         //return new Promise(resolve => setTimeout(resolve, 10000));
         console.log('   >> Worker PID:', process.pid);
         try{
@@ -68,8 +68,8 @@ class Worker extends SCWorker {
             autoReconnect: true
         };
         // var socket = socketClient.connect(options);
-        var socket = socketClient.create(options);
-        socket.on('connect', function () {
+        let socket = await socketClient.create(options);
+        socket.on('connect', () => {
             console.log("conectado al server websocket del tracker");
             app.post('/api/v1/start-vpn/:id', function(req, res) {
                 let id = req.params.id;
