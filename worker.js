@@ -16,9 +16,9 @@ class Worker extends SCWorker {
     async run() {
         //return new Promise(resolve => setTimeout(resolve, 10000));
         console.log('   >> Worker PID:', process.pid);
-        try{
+        try {
             JSON.parse({});
-        }catch(error){
+        } catch (error) {
             console.log('OOPS');
         }
 
@@ -27,10 +27,10 @@ class Worker extends SCWorker {
         var scServer = this.scServer;
         app.use(serveStatic(path.resolve(__dirname, 'public')));
         app.use(cors());
-        app.use(bodyParser.json({ limit: '50mb' }));
-        app.use(bodyParser.urlencoded({ limit: '50mb', extended: false }));
+        app.use(bodyParser.json({limit: '50mb'}));
+        app.use(bodyParser.urlencoded({limit: '50mb', extended: false}));
         app.use(cookieParser());
-        app.all('/api/v1/*', function(req, res, next) {
+        app.all('/api/v1/*', function (req, res, next) {
             res.header("Access-Control-Allow-Origin", "*");
             res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
             res.header('Access-Control-Allow-Headers', 'Content-type,Accept,X-Access-Token,X-Key');
@@ -55,11 +55,11 @@ class Worker extends SCWorker {
         });
         app.use('/api/v1/', [require('./routes'), router2]);
         httpServer.on('request', app);
-        scServer.on('connection', function(socket) {
+        scServer.on('connection', function (socket) {
             console.log("alguien se conecto al server");
         });
 
-    //    configurando socketcluster para conectarse al tracker
+        //    configurando socketcluster para conectarse al tracker
 
         var options = {
             secure: false,
@@ -72,7 +72,14 @@ class Worker extends SCWorker {
         console.log("llamado el create");
         (async () => {
             for await (let status of socket.listener('connect')) {
-                console.log("CONNECTED: ", status);
+                console.log("conectado al server websocket del tracker");
+                app.post('/api/v1/start-vpn/:id', (req, res) => {
+                    let id = req.params.id;
+                    console.log('starting vpn for bb with id: ', id);
+                    var vpnChannel = socket.subscribe('vpn_' + id + '_channel');
+                    vpnChannel.publish({type: 'start-vpn', id: id});
+                    res.json({success: true});
+                });
             }
         })();
 
@@ -107,4 +114,5 @@ class Worker extends SCWorker {
 
     }
 }
+
 new Worker();
