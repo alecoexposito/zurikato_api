@@ -70,7 +70,7 @@ class Worker extends SCWorker {
         // var socket = socketClient.connect(options);
         let socket = socketClient.create(options);
         (async () => {
-            for await (let status of client.listener('connect')) {
+            for await (let status of socket.listener('connect')) {
                 console.log("CONNECTED: ", status);
             }
         })();
