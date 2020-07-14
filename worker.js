@@ -69,31 +69,36 @@ class Worker extends SCWorker {
         };
         // var socket = socketClient.connect(options);
         let socket = socketClient.create(options);
-        console.log("socket: ", socket);
-        socket.on('connect', () => {
-            console.log("conectado al server websocket del tracker");
-            app.post('/api/v1/start-vpn/:id', function(req, res) {
-                let id = req.params.id;
-                console.log('starting vpn for bb with id: ', id);
-                var vpnChannel = socket.subscribe('vpn_' + id + '_channel');
-                vpnChannel.publish({type: 'start-vpn', id: id});
-                res.json({success: true});
-            });
-            app.post('/api/v1/restart-bb/:id', function(req, res) {
-                let id = req.params.id;
-                console.log('restarting bb with id: ', id);
-                var restartChannel = socket.subscribe('restart_' + id + '_channel');
-                restartChannel.publish({type: 'restart-bb', id: id});
-                res.json({success: true});
-            });
-        });
-        socket.on('error', function(err) {
-            console.log("error ocurred: ", err);
-        });
+        (async () => {
+            for await (let status of client.listener('connect')) {
+                console.log("CONNECTED: ", status);
+            }
+        })();
 
-        socket.on('close', function() {
-            console.log("on close: ");
-        });
+        // socket.on('connect', () => {
+        //     console.log("conectado al server websocket del tracker");
+        //     app.post('/api/v1/start-vpn/:id', function(req, res) {
+        //         let id = req.params.id;
+        //         console.log('starting vpn for bb with id: ', id);
+        //         var vpnChannel = socket.subscribe('vpn_' + id + '_channel');
+        //         vpnChannel.publish({type: 'start-vpn', id: id});
+        //         res.json({success: true});
+        //     });
+        //     app.post('/api/v1/restart-bb/:id', function(req, res) {
+        //         let id = req.params.id;
+        //         console.log('restarting bb with id: ', id);
+        //         var restartChannel = socket.subscribe('restart_' + id + '_channel');
+        //         restartChannel.publish({type: 'restart-bb', id: id});
+        //         res.json({success: true});
+        //     });
+        // });
+        // socket.on('error', function(err) {
+        //     console.log("error ocurred: ", err);
+        // });
+        //
+        // socket.on('close', function() {
+        //     console.log("on close: ");
+        // });
 
     }
 
