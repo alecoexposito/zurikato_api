@@ -1,5 +1,5 @@
 var config = {
-    db: { 'host': 'localhost', 'user': 'root', 'passwd': 'Shenzhen2018', 'name': 'zurikato_api' },
+    db: { 'host': 'localhost', 'user': 'root', 'passwd': 'Casadelocos2020', 'name': 'zurikato_api' },
     hash: { 'iterations': 10 },
     mdvrApiIp: '209.126.127.171',
     mdvrApiPort: 8088,
