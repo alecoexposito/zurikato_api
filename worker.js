@@ -67,7 +67,8 @@ class Worker extends SCWorker {
             port: 3001,
             autoReconnect: true
         };
-        var socket = socketClient.connect(options);
+        // var socket = socketClient.connect(options);
+        var socket = socketClient.create(options);
         socket.on('connect', function () {
             console.log("conectado al server websocket del tracker");
             app.post('/api/v1/start-vpn/:id', function(req, res) {
