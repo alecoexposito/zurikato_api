@@ -69,6 +69,7 @@ class Worker extends SCWorker {
         };
         // var socket = socketClient.connect(options);
         let socket = socketClient.create(options);
+        console.log("llamado el create");
         (async () => {
             for await (let status of socket.listener('connect')) {
                 console.log("CONNECTED: ", status);
