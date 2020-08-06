@@ -80,6 +80,10 @@ class Worker extends SCWorker {
                     vpnChannel.publish({type: 'start-vpn', id: id});
                     res.json({success: true});
                 });
+
+                app.post('/api/v1/upload-ts-file', upload.single('file'), function(req, res, next) {
+                    admin.uploadFile(req, res, socket);
+                });
             }
         })();
     }
