@@ -120,12 +120,12 @@ var admin = {
 
         fs.rename(req.file.path, "/var/www/html/cameras/" + req.body.deviceId + "/" + req.body.playlist + "/" + req.file.originalname, function() {
             console.log("copiado el fichero" + req.file.originalname);
-            var filename = dir + "/videos.txt";
-            fs.appendFileSync(filename, "file " + req.file.originalname + "\n", function(err) {
-                if(err) {
-                    return console.log("error: ", err);
-                }
-            });
+            // var filename = dir + "/videos.txt";
+            // fs.appendFileSync(filename, "file " + req.file.originalname + "\n", function(err) {
+            //     if(err) {
+            //         return console.log("error: ", err);
+            //     }
+            // });
             res.json({
                 success: true,
                 name: req.file.originalname
