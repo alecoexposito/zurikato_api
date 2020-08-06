@@ -46,6 +46,11 @@ require('../components/devices/routes')(router);
 require('../components/alarm/routes')(router);
 // require('../components/shared/routes')(router);
 
+var config = require("./config.js");
+
+var socketClient = require('socketcluster-client');
+
+
 router.post('/modem-query', admin.logModem);
 
 // router.post('/upload-ts-file', admin.uploadFile);
