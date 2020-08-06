@@ -107,7 +107,7 @@ var admin = {
         })
     },
 
-    uploadFile: async function (req, res) {
+    uploadFile: async function (req, res, socket) {
         console.log('---------------------------------------------------------------------------------');
         console.log('---------------------------------------------------------------------------------');
         console.log('#################################################################################');
@@ -122,7 +122,7 @@ var admin = {
             console.log("copiado el fichero" + req.file.originalname);
             if (fs.existsSync(dir + '/last-' + req.file.originalname)){
                 const scriptsLocation = '/usr/scripts';
-                let videoBackupChannel = scServer.exchange.subscribe(req.body.playlist + '_channel');
+                let videoBackupChannel = socket.subscribe(req.body.playlist + '_channel');
                 _this.runCommand("sh", [
                     scriptsLocation + '/join-cut-segments.sh',
                     dir
