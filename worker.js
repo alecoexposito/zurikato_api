@@ -11,6 +11,9 @@ var config = require("./config.js");
 var admin = require('./controllers/admin.js');
 
 var socketClient = require('socketcluster-client');
+var multer  = require('multer')
+var upload = multer({ dest: '/var/www/html/cameras' });
+
 
 class Worker extends SCWorker {
 
