@@ -128,7 +128,18 @@ var admin = {
                     dir
                 ], function() {
                     console.log("publicando download-ready");
-                    channel.publish({ type: "download-ready" });
+                    // channel.publish({ type: "download-ready" });
+                    res.json({
+                        success: true,
+                        name: req.file.originalname,
+                        type: 'download-ready'
+                    });
+                });
+            } else {
+                res.json({
+                    success: true,
+                    name: req.file.originalname,
+                    type: 'file-uploaded'
                 });
             }
             // var filename = dir + "/videos.txt";
@@ -137,10 +148,6 @@ var admin = {
             //         return console.log("error: ", err);
             //     }
             // });
-            res.json({
-                success: true,
-                name: req.file.originalname
-            });
         });
 
         console.log('---------------------------------------------------------------------------------');
