@@ -8,6 +8,7 @@ var bodyParser = require('body-parser');
 var middleware = require('./middleware');
 var cors = require('cors');
 var config = require("./config.js");
+var admin = require('./controllers/admin.js');
 
 var socketClient = require('socketcluster-client');
 
