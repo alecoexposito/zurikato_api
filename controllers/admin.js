@@ -108,9 +108,9 @@ var admin = {
     },
 
     uploadFile: async function (req, res) {
-        console.log('---------------------------------------------------------------------------------')
-        console.log('---------------------------------------------------------------------------------')
-        console.log('#################################################################################')
+        console.log('---------------------------------------------------------------------------------');
+        console.log('---------------------------------------------------------------------------------');
+        console.log('#################################################################################');
 
         var dir = "/var/www/html/cameras/" + req.body.deviceId + "/" + req.body.playlist;
 
@@ -120,14 +120,21 @@ var admin = {
 
         fs.rename(req.file.path, "/var/www/html/cameras/" + req.body.deviceId + "/" + req.body.playlist + "/" + req.file.originalname, function() {
             console.log("copiado el fichero" + req.file.originalname);
+            var filename = dir + "/videos.txt";
+            fs.appendFileSync(filename, "file " + req.file.originalname + "\n", function(err) {
+                if(err) {
+                    return console.log("error: ", err);
+                }
+            });
+            res.json({
+                success: true,
+                name: req.file.originalname
+            });
         });
 
-        console.log('---------------------------------------------------------------------------------')
-        console.log('---------------------------------------------------------------------------------')
-        console.log('---------------------------------------------------------------------------------')
-        res.json({
-            success: true
-        });
+        console.log('---------------------------------------------------------------------------------');
+        console.log('---------------------------------------------------------------------------------');
+        console.log('---------------------------------------------------------------------------------');
     },
     getApiPass: async function(req, res) {
         token = req.header('service_token');
