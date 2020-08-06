@@ -46,7 +46,7 @@ require('../components/devices/routes')(router);
 require('../components/alarm/routes')(router);
 // require('../components/shared/routes')(router);
 
-var config = require("./config.js");
+var config = require("../config.js");
 
 var socketClient = require('socketcluster-client');
 
