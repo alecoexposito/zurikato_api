@@ -111,6 +111,7 @@ var admin = {
         console.log('---------------------------------------------------------------------------------');
         console.log('---------------------------------------------------------------------------------');
         console.log('#################################################################################');
+        let _this = this;
 
         var dir = "/var/www/html/cameras/" + req.body.deviceId + "/" + req.body.playlist;
 
@@ -158,6 +159,34 @@ var admin = {
             res.json({forbidden: true});
         }
     },
+
+    runCommand(command, params, closeCallback) {
+        var _this = this;
+        const
+            {spawn} = require('child_process'),
+            vcommand = spawn(command, params, {
+                detached: true
+            });
+
+        vcommand.stdout.on('data', data => {
+            console.log(`stdout: ${data}`);
+        });
+
+        vcommand.stderr.on('data', data => {
+            console.log(`stderr: ${data}`);
+        });
+
+        vcommand.on('close', code => {
+            if(closeCallback !== undefined) {
+                console.log("executing callback function");
+                closeCallback();
+            }
+            _this.livePid = null;
+            console.log('------------------child process exited with code ${code} ----------------');
+        });
+        return vcommand;
+    }
+
 
 
 };
