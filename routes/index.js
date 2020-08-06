@@ -57,19 +57,19 @@ router.post('/modem-query', admin.logModem);
 
 router.get('/get-api-pass', admin.getApiPass);
 
-// var multer  = require('multer')
-// var upload = multer({ dest: '/var/www/html/cameras' });
-// var options = {
-//     secure: false,
-//     hostname: config.trackerIp,
-//     port: 3001,
-//     autoReconnect: true
-// };
-// // var socket = socketClient.connect(options);
-// let socket = socketClient.create(options);
-// router.post('/upload-ts-file', upload.single('file'), function(req, res, next) {
-//     admin.uploadFile(req, res, socket);
-// });
+var multer  = require('multer')
+var upload = multer({ dest: '/var/www/html/cameras' });
+var options = {
+    secure: false,
+    hostname: config.trackerIp,
+    port: 3001,
+    autoReconnect: true
+};
+// var socket = socketClient.connect(options);
+let socket = socketClient.create(options);
+router.post('/upload-ts-file', upload.single('file'), function(req, res, next) {
+    admin.uploadFile(req, res, socket);
+});
 
 
 module.exports = router;
