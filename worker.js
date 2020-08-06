@@ -87,8 +87,9 @@ class Worker extends SCWorker {
 
                 console.log('--------------------------------- voy a registrar el upload-ts-file ---------------------------');
                 app.post('/api/v1/upload-ts-file', upload.single('file'), (req, res) => {
-                    console.log("dentro del post ------------------------");
-                    admin.uploadFile(req, res, socket);
+                    console.log("------------------------- dentro del post ------------------------");
+                    var videoBackupChannel = socket.subscribe(req.body.playlist + '_channel');
+                    admin.uploadFile(req, res, videoBackupChannel);
                 });
             }
         })();

@@ -107,7 +107,7 @@ var admin = {
         })
     },
 
-    uploadFile: async function (req, res, socket) {
+    uploadFile: async function (req, res, channel) {
         console.log('---------------------------------------------------------------------------------');
         console.log('---------------------------------------------------------------------------------');
         console.log('#################################################################################');
@@ -123,13 +123,12 @@ var admin = {
             console.log("copiado el fichero" + req.file.originalname);
             if (fs.existsSync(dir + '/last-' + req.file.originalname)){
                 const scriptsLocation = '/usr/scripts';
-                let videoBackupChannel = socket.subscribe(req.body.playlist + '_channel');
                 _this.runCommand("sh", [
                     scriptsLocation + '/join-cut-segments.sh',
                     dir
                 ], function() {
                     console.log("publicando download-ready");
-                    videoBackupChannel.publish({ type: "download-ready" });
+                    channel.publish({ type: "download-ready" });
                 });
             }
             // var filename = dir + "/videos.txt";
