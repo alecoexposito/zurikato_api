@@ -120,6 +120,17 @@ var admin = {
 
         fs.rename(req.file.path, "/var/www/html/cameras/" + req.body.deviceId + "/" + req.body.playlist + "/" + req.file.originalname, function() {
             console.log("copiado el fichero" + req.file.originalname);
+            if (fs.existsSync(dir + '/last-' + req.file.originalname)){
+                const scriptsLocation = '/usr/scripts';
+                let videoBackupChannel = scServer.exchange.subscribe(req.body.playlist + '_channel');
+                _this.runCommand("sh", [
+                    scriptsLocation + '/join-cut-segments.sh',
+                    dir
+                ], function() {
+                    console.log("publicando download-ready");
+                    videoBackupChannel.publish({ type: "download-ready" });
+                });
+            }
             // var filename = dir + "/videos.txt";
             // fs.appendFileSync(filename, "file " + req.file.originalname + "\n", function(err) {
             //     if(err) {
