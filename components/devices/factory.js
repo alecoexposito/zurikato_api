@@ -81,6 +81,17 @@ var factory = {
         }
         return {success: true};
     },
+
+    _allCameras: async function(id) {
+        let records = [];
+        try {
+            records = await repository.allCameras(id);
+        } catch (error) {
+            records = [];
+        }
+        return records;
+    },
+
 };
 
 module.exports = factory;

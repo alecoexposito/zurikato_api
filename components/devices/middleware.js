@@ -47,6 +47,12 @@ var middleware = {
         var records = await factory._removeCameraAutoplay(req.params.id);
         res.json(records);
     },
+
+    allCameras: async function(req, res) {
+        var records = await factory._allCameras(req.params.id);
+        res.json(records);
+    },
+
 };
 
 module.exports = middleware;

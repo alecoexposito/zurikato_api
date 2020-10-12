@@ -46,5 +46,11 @@ const repository = {
         let query = "update camera set in_autoplay = 0 where id = " + id + "";
         db.sequelize.query(query);
     },
+    allCameras: async function(id) {
+        let query = "select camera.id, url_camera, camera.name from camera where camera.device_id = " + id;
+        let data = await db.sequelize.query(query);
+        return data[0];
+    },
+
 };
 module.exports = repository;

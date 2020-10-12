@@ -14,6 +14,7 @@ module.exports = (router) => {
     router.get('/devices/:id/coordinatesByDates', middleware.coordinatesByDates);
 
     router.get('/devices/:id/camerasInAutoplay', middleware.camerasInAutoplay);
+    router.get('/devices/:id/cameras', middleware.allCameras);
     router.post('/cameras/:id/setAutoplay', middleware.setCameraAutoplay);
     router.get('/cameras/:id/removeAutoplay', middleware.removeCameraAutoplay);
 
