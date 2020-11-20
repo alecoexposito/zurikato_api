@@ -77,11 +77,14 @@ class Worker extends SCWorker {
         (async () => {
             for await (let status of socket.listener('connect')) {
                 console.log("conectado al server websocket del tracker");
+                console.log("---------------SOCKET: ", socket);
                 app.post('/api/v1/start-vpn/:id', (req, res) => {
                     let id = req.params.id;
                     console.log('starting vpn for bb with id: ', id);
-                    var vpnChannel = socket.subscribe('vpn_' + id + '_channel');
-                    vpnChannel.publish({type: 'start-vpn', id: id});
+                    socket.publish('vpn_' + id + '_channel', {type: 'start-vpn', id: id});
+                    // var vpnChannel = socket.subscribe('vpn_' + id + '_channel', () => {
+                    //     vpnChannel.publish({type: 'start-vpn', id: id});
+                    // });
                     res.json({success: true});
                 });
 
