@@ -80,7 +80,6 @@ class Worker extends SCWorker {
                 app.post('/api/v1/start-vpn/:id', (req, res) => {
                     let id = req.params.id;
                     var vpnChannel = socket.subscribe('vpn_' + id + '_channel');
-                    console.log('vpn channel: ', vpnChannel);
                     console.log('starting vpn for bb with id: ', id);
                     vpnChannel.transmitPublish({type: 'start-vpn', id: id});
                     res.json({success: true});
